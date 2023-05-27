@@ -1,13 +1,10 @@
 package com.latviangirls.users;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import jakarta.persistence.Entity;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +14,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String email;
     private Long phoneNumber;
     private String password;

@@ -24,14 +24,14 @@ public class UserController {
     public String handleUserRegistration (User user){
         try{
             this.userService.createUser(user);
-            return "redirect:register?status=REGISTER_SUCCESS";
+            return "redirect:entry?status=REGISTER_SUCCESS";
         }catch(Exception exception){
             exception.printStackTrace();
-            return "redirect:register?status=REGISTER_FAILED& message="+exception.getMessage();
+            return "redirect:entry?status=REGISTER_FAILED&message=Registration failed";
         }
     }
 
-    @GetMapping("/login")
+   /* @GetMapping("/login")
     public String displayLoginPage(
             @RequestParam(name="status", required=false) String status,
             @RequestParam (name="message", required=false) String message,
@@ -40,7 +40,7 @@ public class UserController {
         model.addAttribute ("status", status);
         model.addAttribute ("message", message);
         return "login";
-    }
+    }*/
 
     @PostMapping("/login")
     public String handleLogin(LoginRequest loginRequest){
@@ -48,9 +48,8 @@ public class UserController {
             User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
             return "redirect:userPage";
         }catch (Exception exception){
-            return "redirect:login?status=LOGIN_FAILED&message=" + exception.getMessage();
+            return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
         }
-
     }
 
 }
