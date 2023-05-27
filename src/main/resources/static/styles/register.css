@@ -1,0 +1,28 @@
+h1{
+    color: slateblue;
+    padding: 2px;
+    text-align: center;
+}
+.links{
+    text-decoration: darkcyan;
+    background: white;
+    color: slateblue;
+    padding: 4px;
+    margin: 4px;
+    border-bottom: 6px cadetblue;
+}
+.margin-top{
+    margin-top:10px ;
+}
+img{
+    width: 50px ;
+    height: auto;
+    border-radius: 60%;
+}
+header {
+    text-align: justify;
+    vertical-align: middle;
+}
+.inline{
+    display: inline-block;
+}

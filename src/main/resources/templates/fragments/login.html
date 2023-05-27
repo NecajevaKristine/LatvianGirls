@@ -1,0 +1,28 @@
+<main class="margin-top" th:fragment="login">
+    <h3 class="margin-top">Login</h3>
+
+    <form method="post" action="/login">
+        <div>
+            <label>Enter your nickname</label>
+            <input name="nickName" minlength="4"type="text" required>
+        </div>
+
+        <div>
+            <label>Enter your password</label>
+            <input name="password" minlength="4" type="password" required>
+        </div>
+        <div>
+            <button class="button green-theme" type="submit">Sign in</button>
+            <button class="button red-theme" type="reset">Clear form</button>
+        </div>
+    </form>
+    <!--
+    <section th:if="${status !=null}">
+      <div th:if="${status == 'REGISER_SUCCESS'}">
+        <span class="green-theme">Account created successfully.Please login to continue</span>
+      </div>
+      <div th:if="${status == 'LOGIN_FAILED'}">
+        <span class="red-theme" th:text="${message}"></span>
+      </div>
+    </section>-->
+</main>

@@ -1,0 +1,31 @@
+<main class="margin-top" th:fragment="register">
+  <h3 class="margin-top"> Create An Account</h3>
+  <form method="post" action="/register">
+
+    <div>
+      <label>Enter your full name</label>
+      <input name="fullName" type="text" required>
+    </div>
+    <div>
+      <label>Enter your Nickname</label>
+      <input name="nickName" minlength="4" type="text" required>
+    </div>
+
+    <div>
+      <label>Enter your password</label>
+      <input name="password" minlength="4" type="password" required>
+    </div>
+    <div>
+      <label>Enter your phoneNumber</label>
+      <input name="phoneNumber" type="text" required>
+    </div>
+    <div>
+      <label>Enter your email</label>
+      <input name="email" type="email" required>
+    </div>
+    <div>
+      <button class="button green-theme" type="submit">Register</button>
+      <button class="button red-theme" type="reset">clear form</button>
+    </div>
+  </form>
+</main>
