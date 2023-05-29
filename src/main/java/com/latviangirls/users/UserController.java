@@ -15,10 +15,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/register")
+   /* @GetMapping("/register")
     public String showRegisterPage(){
         return "guestRegister";
-    }
+    }*/
 
     @PostMapping("/register")
     public String handleUserRegistration (User user){
@@ -31,6 +31,21 @@ public class UserController {
         }
     }
 
+
+    /*@PostMapping("/profile")
+    public String handleUser(){
+        /*try {
+            User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
+            return "redirect:userPage";
+        /*}catch (Exception exception){
+            return "redirect:userPage";
+        }*/
+
+
+
+
+
+
    /* @GetMapping("/login")
     public String displayLoginPage(
             @RequestParam(name="status", required=false) String status,
@@ -41,12 +56,15 @@ public class UserController {
         model.addAttribute ("message", message);
         return "login";
     }*/
-
+   @GetMapping("/profile")
+   public String displayUserPage(){
+       return "userPage";
+   }
     @PostMapping("/login")
     public String handleLogin(LoginRequest loginRequest){
         try {
             User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
-            return "redirect:userPage";
+            return "redirect:profile";
         }catch (Exception exception){
             return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
         }
