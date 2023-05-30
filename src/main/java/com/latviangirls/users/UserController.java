@@ -15,9 +15,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/register")
-    public String showRegisterPage(){
-        return "guestRegister";
+    @GetMapping("/profile")
+    public String displayUserPage(){
+        return "userPage";
     }
 
     @PostMapping("/register")
@@ -46,7 +46,7 @@ public class UserController {
     public String handleLogin(LoginRequest loginRequest){
         try {
             User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
-            return "redirect:userPage";
+            return "redirect:profile";
         }catch (Exception exception){
             return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
         }
