@@ -1,10 +1,14 @@
 package com.latviangirls.eventGuests;
 
 import com.latviangirls.users.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
 
 @Controller
 public class GuestController {
@@ -17,17 +21,30 @@ public class GuestController {
     }
 
     @GetMapping("/WelcomeToSeeInvitation")
-    public String displayInvitationPage(){
+    public String displayInvitationPage(
+            @RequestParam(name="status", required = false) String status,
+            @RequestParam(name="message", required = false) String message,
+            Model model //transfers info to html
+    ){
+        model.addAttribute("status", status);
+        model.addAttribute("message", message);
         return "invitation";
     }
 
-    @PostMapping("/invitation")
-    public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest){
+    @PostMapping("/WelcomeToSeeInvitation")
+    public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response){
+        System.out.println(invitationOpeningRequest);
         try {
             Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
+            if(loggedInGuest==null) throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
+
+            Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
+            cookie.setMaxAge(3000);
+            response.addCookie(cookie);
             return "redirect:WelcomeToSeeInvitation";
+
         }catch (Exception exception){
-            return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
+            return "redirect:entry?status=LOGIN_FAILED&message="+ exception.getMessage();
         }
     }
 
@@ -43,7 +60,7 @@ public class GuestController {
             return "redirect:profile?status=REGISTER_SUCCESS";
         }catch(Exception exception){
             exception.printStackTrace();
-            return "redirect:profile?status=REGISTER_FAILED&message=Registration failed";
+            return "redirect:profile?status=REGISTER_FAILED&message=Registration failed"+exception.getMessage();
         }
     }
 

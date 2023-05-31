@@ -1,12 +1,12 @@
-<main class="margin-top" th:fragment="invitation">
+<main class="margin-top" th:fragment="invitationLogin">
   <h3 class="margin-top">Seems there will be a party?<br>
     Let`s check Your invitation!
   </h3>
 
-  <form method="post" action="/invitation">
+  <form method="post" action="/WelcomeToSeeInvitation">
     <div>
       <label>Enter your e-mail address</label>
-      <input name="email" minlength="4" type="text" required>
+      <input name="guestEmail" minlength="4" type="text" required>
     </div>
 
     <div>
@@ -18,12 +18,4 @@
       <button class="button red-theme" type="reset">Clear form</button>
     </div>
   </form>
-  <!-- <section th:if="${status !=null}">
-     <div th:if="${status == 'REGISER_SUCCESS'}">
-       <span class="green-theme">Account created successfully.Please login to continue</span>
-     </div>
-     <div th:if="${status == 'LOGIN_FAILED'}">
-       <span class="red-theme" th:text="${message}"></span>
-     </div>
-   </section>-->
 </main>
