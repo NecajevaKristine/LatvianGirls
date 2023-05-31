@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!--<meta  name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <title>Todo</title>
-  <link rel="stylesheet" href="/styles/main.css">
-</head>
-<body>
-<main class="margin-top" th:fragment="login">
-  <h3 class="margin-top">Todo List</h3>
+<main class="margin-top" th:fragment="todoForm">
   <form method="post" action="/todo">
     <div>
       <label>toBeDone</label>
       <input name="toBeDone" minlength="4"type="text" required>
     </div>
-
     <div>
       <label>timeLimit</label>
       <input name="timeLimit" minlength="4" type="text" required>
@@ -29,8 +18,6 @@
     </div>
   </form>
 </main>
-</body>
-</html>
 
 
 

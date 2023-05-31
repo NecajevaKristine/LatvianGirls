@@ -3,6 +3,7 @@ package com.latviangirls.todo;
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -58,5 +59,8 @@ public class TodoController {
     public void deleteToDo (@PathVariable Long id){
         todoService.deleteToDo(id);
     }
+
+
+
 }
 

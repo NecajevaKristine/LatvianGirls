@@ -1,6 +1,7 @@
 package com.latviangirls.todo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jdk.jshell.Snippet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ import jakarta.persistence.GeneratedValue;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+/*@Table(name=todos)*/
 
 public class Todo {
     @jakarta.persistence.Id
