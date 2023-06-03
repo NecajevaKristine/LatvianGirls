@@ -1,9 +1,8 @@
-package com.latviangirls.mailConfig;
+/*package com.latviangirls.mailConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.sendgrid.SendGrid;
 @Configuration
 public class SendEmailConfig {
 
@@ -14,8 +13,7 @@ public class SendEmailConfig {
     public SendGrid getSendGrid() {
       return new SendGrid(appKey);
     }
-}
-
+}*/
 
 
 

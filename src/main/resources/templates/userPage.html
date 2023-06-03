@@ -98,39 +98,70 @@
     <div class="w3-container" id="invitedGuests" style="margin-top:75px">
         <main class="margin-top">
             <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-            <form method="post" action="/guestRegister">
-                <div>
-                    <label>Enter guest</label>
-                    <input name="guestNickName" type="text" required>
-                </div>
-                <div>
-                    <label>Guest`s phone number</label>
-                    <input name="guestPhoneNumber" minlength="8" type="text" required>
-                </div>
-                <div>
-                    <label>Relationships</label>
-                    <input name="guestRel" type="text" required>
-                </div>
-                <div>
-                    <label>Guest`s email</label>
-                    <input name="guestEmail" type="email" required>
-                </div>
-                <div>
-                    <label>Number of guests</label>
-                    <input name="guestCount" type="number" required>
-                </div>
-                <div>
-                    <label>Guest-Adult </label>
-                    <input name="guestAdult" type="number" required>
-                </div>
-                <div>
-                    <label>Guest-Children </label>
-                    <input name="guestChild" type="number" required>
-                    <input name="guestProjectCode" type="hidden" value="1808" required><br>
-                    <button class="button green-theme" type="submit">Register</button>
-                    <button class="button red-theme" type="reset">Clear data`s</button>
-                </div>
-            </form>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <form method="post" action="/guestRegister">
+                        <table style="width:100%">
+                            <tr>
+                                <td>Add Nickname</td>
+                                <td>Add Email</td>
+                                <td>Add phone number</td>
+                            </tr>
+                        <tr>
+                            <td>    <input type="text" name="guestNickName" class="form-control" placeholder="Add nickname"> </td>
+
+                            <td>    <input name="guestEmail" type="email" class="form-control" placeholder="Add email"></td>
+
+                            <td>    <input name="guestPhoneNumber" type="tel" class="form-control" placeholder="Add phone number"></td>
+
+                        </tr>
+                              <div class="col-sm-3">
+                                  <input name="guestProjectCode" type="hidden" value="1808" required><br>
+                              </div>
+
+                              <div class="col-sm-2">
+                                  <button class="button green-theme" type="submit">Add guest</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+      </div>
+      <table class="table table-sm">
+          <caption>Provided list of guests!</caption>
+          <thead class="table-purple">
+          <tr>
+              <th>Nickname</th>
+              <th>Phone number</th>
+              <th>Email</th>
+              <th>Invitation acceptance</th>
+              <th>Response date</th>
+              <th>Count</th>
+              <th>Comment from guest</th>
+              <th>Sent invitation link</th>
+              <th>Invitation date</th>
+              <th>Guest adding date</th>
+              <th>Guest info update date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="guest: ${guests}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
+            <td th:text="${guest.guestNickName}"></td>
+            <td th:text="${guest.guestPhoneNumber}"></td>
+            <td th:text="${guest.guestEmail}"></td>
+            <td th:text="${guest.guestInvitationAcceptance}"></td>
+            <td th:text="${guest.guestResponseDate}"></td>
+            <td th:text="${guest.guestCount}"></td>
+            <td th:text="${guest.guestComment}"></td>
+            <td th:text="${guest.invitationSent}"></td>
+            <td th:text="${guest.guestInvitationDate}"></td>
+            <td th:text="${guest.createdAt}"></td>
+            <td th:text="${guest.updatedAt}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
         </main>
     </div>
 

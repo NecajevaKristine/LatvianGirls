@@ -64,5 +64,10 @@ public class GuestController {
         }
     }
 
+    @GetMapping("/guests")
+    public String listGuest(Model model){
+        model.addAttribute("guests", guestService.getAllGuests()); //izsauc no guestService metodi, kas iedod visu listi ar viesiem
+        return "guests";
+    }
 
 }

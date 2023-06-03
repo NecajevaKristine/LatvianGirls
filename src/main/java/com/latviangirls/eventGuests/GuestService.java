@@ -1,7 +1,11 @@
 package com.latviangirls.eventGuests;
-import com.latviangirls.users.User;
+import jakarta.persistence.PrePersist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.util.List;
+
 
 @Service
 public class GuestService {
@@ -21,6 +25,19 @@ public class GuestService {
         if (guest == null) throw new Exception("Email or invitation code is not correct");
         return guest;
     }
+
+        public List<Guest> getAllGuests() {
+             return (List<Guest>) guestRepository.findAll();
+    }
+
+    Timestamp createdAt;
+
+    @PrePersist //šī metode uztaisa datumu pirms saglabāšanas
+    public void guestSaveTime(){
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+
+    }
+
 
 }
 

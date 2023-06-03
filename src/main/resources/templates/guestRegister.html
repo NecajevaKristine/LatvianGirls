@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,43 +6,32 @@
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles/guestRegister.css" rel="stylesheet">
 </head>
-<body>
+<body>-->
 <!--<header th:replace="~{fragments/header::not-logged-in-header}"></header>-->
-<main class="margin-top">
+<!--<<main class="margin-top">
     <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
     <form method="post" action="/guestRegister">
-        <div>
-            <label>Enter guest</label>
-            <input name="guestNickName" type="text" required>
-        </div>
-        <div>
-            <label>Guest`s phone number</label>
-            <input name="guestPhoneNumber" minlength="8" type="text" required>
-        </div>
-       <!-- <div>
-            <label>Relationships</label>
-            <input name="guestRel" type="text" required>
-        </div>-->
-        <div>
-            <label>Guest`s email</label>
-            <input name="guestEmail" type="email" required>
-        </div>
-        <!--    <div>
-                <label>Number of guests</label>
-                <input name="guestCount" type="number" required>
+        <div class="row">
+            <div class="col-sm-4">
+                <input type="text" name="guestNickName" class="form-control" placeholder="Add nickname">
             </div>
-            <div>
-                <label>Guest-Adult </label>
-                <input name="guestAdult" type="number" required>
+            <div class="col-sm-7">
+                <input name="guestEmail" type="email" class="form-control" placeholder="Add email">
             </div>
-            <div>
-                <label>Guest-Children </label>
-                <input name="guestChild" type="number" required>-->
+            <div class="col-sm-7">
+                <input name="guestPhoneNumber" type="tel" class="form-control" placeholder="Add phone number">
+            </div>
+            <div class="col-sm-7">
+                <input name="createdAt" type="hidden" value="Date" required><br>
+            </div>
+            <div class="col-sm-3">
                 <input name="guestProjectCode" type="hidden" value="1808" required><br>
-                <button class="button green-theme" type="submit">Register</button>
-                <button class="button red-theme" type="reset">Clear data`s</button>
             </div>
+            <div class="col-sm-2">
+                <button class="button green-theme" type="submit">Add guest</button>
+            </div>
+        </div>
         </form>
     </main>
     </body>
-    </html>
+    </html>-->
