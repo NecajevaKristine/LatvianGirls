@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Profile</title>
 
@@ -29,7 +29,7 @@
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
         <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a>
 
-        <a href="#invitedGuests" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Guests</a>
+        <a href="#guests" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Guests</a>
         <a href="#todo" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Todo</a>
 
         <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a>
@@ -95,37 +95,20 @@
     </div>
 
     <!-- Services -->
-    <div class="w3-Main" id="invitedGuests" style="margin-left:0px;margin-right:40px">
+    <div class="w3-Main" id="guests" style="margin-left:0px;margin-right:40px">
         <h1 class="w3-jumbo"><b>Guest managing</b></h1>
         <h1 class="w3-xxxlarge w3-text-red"><b>Guests</b></h1>
         <hr style="width:50px;border:5px solid rgba(183,149,231,0.76)" class="w3-round">
             <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-
-            <div class="row" >
+             <div class="row" >
                 <div class="col-lg-3">
-                    <form method="post" action="/guestRegister">
-                    <table style="width:80%">
-                        <tr>
-                                <td>Add Nickname</td>
-                                <td>Add Email</td>
-                                <td>Add phone number</td>
-                                <td> </td>
-
-                            </tr>
-                        <tr>
-                            <td>    <input type="text" name="guestNickName" class="form-control" placeholder="Add nickname"> </td>
-                            <td>    <input name="guestEmail" type="email" class="form-control" placeholder="Add email"></td>
-                            <td>    <input name="guestPhoneNumber" type="tel" class="form-control" placeholder="Add phone number"></td>
-                            <td>    <button class="button green-theme" type="submit">Add guest</button></td>
-                        </tr>
-                    </table>
-                            <input name="guestProjectCode" type="hidden" value="1808" required><br>
-                    </form>
+                    <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
                 </div>
+            </div>
+    </div>
+    </main>
 
-                  </div>
-              </div>
-      </div>
+    </div>
 
   <!--  <div th:if="${status!=null}">
         <div th:if="${status == 'REGISTRATION_SUCCESS'}">
@@ -137,35 +120,31 @@
     </div> -->
 
       <table class="table table-sm" style="width:100%">
-          <caption>Provided list of guests!</caption>
+          <caption>List of provided guests!</caption>
           <thead class="table-purple">
           <tr>
               <th>Nickname</th>
               <th>Phone number</th>
               <th>Email</th>
               <th>Invitation acceptance</th>
-              <th>Response date</th>
-              <th>Count</th>
               <th>Comment from guest</th>
-              <th>Sent invitation link</th>
-              <th>Invitation date</th>
-              <th>Guest adding date</th>
-              <th>Guest info update date</th>
+              <th>Check full info</th>
+              <th>Edit info</th>
+              <th>Delete guest</th>
+
+
           </tr>
           </thead>
           <tbody>
-          <tr th:each="guest: ${guests}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
+          <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
             <td th:text="${guest.guestNickName}"></td>
             <td th:text="${guest.guestPhoneNumber}"></td>
             <td th:text="${guest.guestEmail}"></td>
             <td th:text="${guest.guestInvitationAcceptance}"></td>
-            <td th:text="${guest.guestResponseDate}"></td>
-            <td th:text="${guest.guestCount}"></td>
             <td th:text="${guest.guestComment}"></td>
-            <td th:text="${guest.invitationSent}"></td>
-            <td th:text="${guest.guestInvitationDate}"></td>
-            <td th:text="${guest.createdAt}"></td>
-            <td th:text="${guest.updatedAt}"></td>
+            <td ></td>
+            <td th:href="@{/showUpdateForm}" class="btn btn-primary btn-sm mb-3">Edit info</td>
+            <td ></td>
         </tr>
         </tbody>
     </table>

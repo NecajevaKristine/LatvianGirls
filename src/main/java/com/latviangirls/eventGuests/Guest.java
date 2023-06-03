@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Data
@@ -19,21 +20,25 @@ public class Guest {
     private Long guestId;
     @Column(name="nickname")
     private String guestNickName;
-    private String guestEmail;
     private String guestPhoneNumber;
+    private String guestEmail;
     private Long guestCount;
     @Column(name="inv_accept")
     private String guestInvitationAcceptance;
-    private String guestResponseDate;
-    private String invitationSent;
+    private Timestamp guestResponseDate;
+    private Timestamp invitationSent;
     @Column(name="inv_accept_date")
     private String guestInvitationDate;
     private String guestProjectCode;
     private String guestComment;
     @Column(name="guest_create_date")
-    private String createdAt;
+    private Timestamp createdAt;
     @Column(name="info_update_date")
-    private String updatedAt;
+    private Timestamp updatedAt;
+
+    public boolean isPresent() {
+        return true;
+    }
 
 }
 
