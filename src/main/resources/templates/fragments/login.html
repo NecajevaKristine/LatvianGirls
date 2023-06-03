@@ -1,7 +1,15 @@
 <main class="margin-top" th:fragment="login">
-    <h3 class="margin-top">Login</h3>
-    <!--MESSAGE - you have sgfhdghfsh--->
 
+    <h3 class="margin-top">Login</h3>
+<!--
+    <div th:if="${status!=null}">
+        <div th:if="${status == 'REGISTRATION_SUCCESS'}">
+            <span class="green-theme"> Account created! Please login to continue!</span>
+        </div>
+        <div th:if="${status == 'LOGIN_FAILED'}">
+            <span class="red-theme" th:text="${message}"</span>
+        </div>
+    </div>-->
     <form method="post" action="/login">
         <div>
             <label>Enter your nickname</label>
@@ -17,4 +25,5 @@
             <button class="button red-theme" type="reset">Clear form</button>
         </div>
     </form>
+
  </main>

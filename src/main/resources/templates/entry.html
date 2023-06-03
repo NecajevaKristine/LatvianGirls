@@ -8,25 +8,26 @@
 </head>
 <body>
 
+</div>
+
 <div class="tabs">
   <input type="radio" class="tabs__first" name="tab-test" id="login" checked>
   <label for="login" class="tabs__label" ><u>Login</u></label>
   <div class="tabs__content">
-    <!--    <iframe src="login.html" width="380px" height="300px"></iframe>-->
     <section th:replace="~{fragments/login :: login}"></section>
   </div>
   <input type="radio" class="tabs__first" name="tab-test" id="register">
   <label for="register" class="tabs__label"><u>Register</u></label>
   <div class="tabs__content">
-    <!--  <iframe src="guestRegister.html" width="380px" height="300px"></iframe>-->
     <section th:replace="~{fragments/register :: register}"></section>
   </div>
-  <input type="radio" class="tabs__first" name="tab-test" id="invitation" >
+
+  <input type="radio" class="tabs__first" name="tab-test" id="invitation">
   <label for="invitation" class="tabs__label"><u>See invitation</u></label>
   <div class="tabs__content">
-    <!--  <iframe src="inv_login.html" width="380px" height="300px"></iframe>-->
-    <section th:replace="~{fragments/inv_login :: invitation}"></section>
+    <section th:replace="~{fragments/inv_login :: invitationLogin}"></section>
   </div>
 </div>
+
 </body>
 </html>

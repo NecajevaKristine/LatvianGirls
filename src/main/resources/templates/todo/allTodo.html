@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<header class="container-fluid bg-primary text-white p-4 mb-3">
+    <h1>all todo </h1>
+    <nav th:replace="~{fragments/navigation :: nav-fragment}">
+    </nav>
+</header>
+<main class="container">
+    <h3 class="mb-2">All Items</h3>
+    <div class="container" th:if="${message != null}">
+        <div class="bg-success text-white p-3" th:switch="${message}">
+            <span th:case="'TODO_UPDATED'">Item updated successfully!</span>
+            <span th:case="'TODO_DELETED'">Item deleted successfully!</span>
+            <span th:case="'TODO_CREATED'">Item created successfully!</span>
+        </div>
+    </div>
+    <section class="container">
+        <div th:if="${todoList.isEmpty()}">
+            No Items to display
+        </div>
+        <ol th:if="${!todoList.isEmpty()}">
+            <li th:each="todo: ${todoList}">
+                <span th:text="${todo.getToBeDone()}"></span>
+                <span th:text="${todo.getTimeLimit()}"></span>
+                <span th:text="${todo.getStatus()}"></span>
+                <a class="btn btn-secondary" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/' + todo.getId()}">Update</a>
+                <a class="btn btn-success" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/status/' + todo.getId() + '/COMPLETED'}">Complete</a>
+                <a class="btn btn-warning" th:if="${!todo.getStatus().toString().equals('INPROGRESS')}" th:href="${'/update-todo/status/' + todo.getId() + '/INPROGRESS'}">In Progress</a>
+                <a class="btn btn-danger" th:href="${'/delete-todo/' + todo.getId()}">Delete</a>
+            </li>
+        </ol>
+    </section>
+</main>
+</body>
+</html>

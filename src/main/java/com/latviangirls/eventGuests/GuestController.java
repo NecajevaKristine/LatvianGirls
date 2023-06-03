@@ -1,66 +1,68 @@
 package com.latviangirls.eventGuests;
 
-
+import com.latviangirls.users.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
 
 @Controller
 public class GuestController {
 
-    private GuestService guestService;
+    private final GuestService guestService;
 
     @Autowired
-    public GuestController(GuestService guestService){
+    public GuestController (GuestService guestService){
         this.guestService = guestService;
     }
 
-    @GetMapping("/zzzzzzzzzzzz")
-    public String showGuestRegisterPage(){
-        return "invitation";
-    }
-
-    @PostMapping("/invitation")
-    public String handleGuestRegistration(Guest guest){
-        try {
-            this.guestService.createGuest(guest);
-            return "redirect:zzzzzzzzzzzzzz?status=NewGuestRegistered";
-        } catch (Exception exception){
-            exception.printStackTrace();
-            return "redirect:guestRegister?status=ERROR_IN_NEW_GUEST_REGISTRATION&message="+exception.getMessage();
-        }
-    }
-/*
-    @GetMapping("login")
-    public String displayLoginPage(
-            @RequestParam(name = "status", required = false) String status,
-            @RequestParam(name = "message", required = false) String message,
-            Model model
+    @GetMapping("/WelcomeToSeeInvitation")
+    public String displayInvitationPage(
+            @RequestParam(name="status", required = false) String status,
+            @RequestParam(name="message", required = false) String message,
+            Model model //transfers info to html
     ){
         model.addAttribute("status", status);
         model.addAttribute("message", message);
-        return "login";
+        return "invitation";
     }
 
-    @PostMapping("/login")
-    public String handleLogin(LoginRequest loginRequest, HttpServletResponse response){
+    @PostMapping("/WelcomeToSeeInvitation")
+    public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response){
+        System.out.println(invitationOpeningRequest);
         try {
-            User loggedInUser = this.userService.verifyUser(loginRequest.username, loginRequest.password);
-            if (loggedInUser == null) throw new RuntimeException("User not found");
+            Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
+            if(loggedInGuest==null) throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
 
-            // save user id to cookie / session
-            Cookie cookie = new Cookie("loggedInUserId", loggedInUser.getId().toString());
-            // cookie expiry is in seconds.
-            // if you want it to last longer, should calculate how many seconds for the days you want
-            cookie.setMaxAge(100000);
-            // saving the cookie to the user browser
+            Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
+            cookie.setMaxAge(3000);
             response.addCookie(cookie);
+            return "redirect:WelcomeToSeeInvitation";
 
-            return "redirect:chat-room";
-        } catch (Exception exception){
-            return "redirect:login?status=LOGIN_FAILED&message=" + exception.getMessage();
+        }catch (Exception exception){
+            return "redirect:entry?status=LOGIN_FAILED&message="+ exception.getMessage();
         }
     }
-*/
+
+    @GetMapping("/guestRegister")
+    public String showRegisterPage(){
+        return "guestRegister";
+    }
+
+    @PostMapping("/guestRegister")
+    public String processGuestRegistration (Guest guest){
+        try{
+            this.guestService.createNewGuest(guest);
+            return "redirect:profile?status=REGISTER_SUCCESS";
+        }catch(Exception exception){
+            exception.printStackTrace();
+            return "redirect:profile?status=REGISTER_FAILED&message=Registration failed"+exception.getMessage();
+        }
+    }
+
+
 }

@@ -14,6 +14,10 @@ public class UserController {
     public UserController (UserService userService){
         this.userService = userService;
     }
+    @GetMapping("/profile")
+    public String displayUserPage(){
+        return "userPage";
+    }
 
    /* @GetMapping("/register")
     public String showRegisterPage(){
@@ -52,10 +56,6 @@ public class UserController {
         model.addAttribute ("message", message);
         return "login";
     }*/
-   @GetMapping("/profile")
-   public String displayUserPage(){
-       return "userPage";
-   }
     @PostMapping("/login")
     public String handleLogin(LoginRequest loginRequest){
         try {
