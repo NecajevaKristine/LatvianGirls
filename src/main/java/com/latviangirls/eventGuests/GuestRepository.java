@@ -12,8 +12,9 @@ public interface GuestRepository extends JpaRepository<Guest, Long> {
 
       Guest findByGuestEmail(String guestEmail);
 
+      void deleteById(Long guestId);
 
-
+      Guest findGuestByGuestEmailAndGuestProjectCode (String guestEmail, String guestProjectCode);
 
 
 }

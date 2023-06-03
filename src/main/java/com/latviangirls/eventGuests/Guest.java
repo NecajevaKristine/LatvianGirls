@@ -15,9 +15,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Table(name="guests")
 public class Guest {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long guestId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String guestId;
     @Column(name="nickname")
     private String guestNickName;
     private String guestPhoneNumber;
@@ -36,9 +37,6 @@ public class Guest {
     @Column(name="info_update_date")
     private Timestamp updatedAt;
 
-    public boolean isPresent() {
-        return true;
-    }
 
 }
 

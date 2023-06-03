@@ -1,6 +1,5 @@
 package com.latviangirls.eventGuests;
 
-import org.hibernate.annotations.DialectOverride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,12 +19,20 @@ public class GuestServiceImpl implements GuestService{
     public void saveGuest(Guest guest) { //metode, kas iedos visu viesu listi
         this.guestRepository.save(guest);
     }
-
     @Override
     public Guest getGuestByGuestEmail(String guestEmail) {
-        Guest optional = guestRepository.findByGuestEmail(guestEmail);
-        Guest guest = null;
-        return guest;
+        return this.guestRepository.findByGuestEmail(guestEmail);
     }
+
+    @Override
+    public void deleteById(Long guestId){
+        this.guestRepository.deleteById(guestId);
+    }
+
+    public Guest verifyGuest(String guestEmail, String guestProjectCode) {
+        Guest user = this.guestRepository.findGuestByGuestEmailAndGuestProjectCode(guestEmail, guestProjectCode);
+        return user;
+    }
+
 
 }

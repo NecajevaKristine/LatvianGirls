@@ -7,5 +7,13 @@ public interface GuestService {
         return null;
     }
     void saveGuest(Guest guest);
+
+    void deleteById(Long guestId);
+
     Guest getGuestByGuestEmail(String guestEmail);
+
+    Guest verifyGuest(String guestEmail, String guestProjectCode);
+
+
+
 }

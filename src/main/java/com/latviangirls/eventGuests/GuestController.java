@@ -1,14 +1,9 @@
 package com.latviangirls.eventGuests;
-
-import com.latviangirls.users.User;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 @Controller
@@ -20,6 +15,7 @@ public class GuestController {
         super();
         this.guestService = guestService;
     }
+
     //Zemāk esošos izmantosim guest reģistram un tabulai
     @Autowired
     private GuestService guestService;
@@ -38,29 +34,28 @@ public class GuestController {
         model.addAttribute("guest", guest);
         return "guestRegister";
     }
+
     @PostMapping("/createGuest")
-    public String  processGuestRegistration(@ModelAttribute("guest") Guest guest){
-       //save guest to data base
+    public String processGuestRegistration(@ModelAttribute("guest") Guest guest) {
+        //save guest to data base
         guestService.saveGuest(guest);
         return "redirect:/";
-        }
-
-
-/*
-    @PostMapping("/guests")
-    public String saveGuest(@ModelAttribute("guest") Guest guest){
-        guestService.save(guest);
     }
 
-   */
+    @GetMapping("/showUpdateForm/{guestEmail}")
+    public String showFormForUpdate(@PathVariable("guestEmail") String guestEmail, Model model) {
+        Guest guest = guestService.getGuestByGuestEmail(guestEmail);
+        model.addAttribute("guest", guest);
+        return "update_guestInfo";
+    }
 
+    @GetMapping("/deleteGuest/{guestId}")
+    public void deleteByGuestId(@PathVariable("guestId") Long guestId) {
+        this.guestService.deleteById(guestId);
+    }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Beidzās sadaļa, kas atbild par viesu reģistru
 
-
-
-
-
-    // Beidzās sadaļa, kas atbild par viesu reģistru
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
             @RequestParam(name = "status", required = false) String status,
@@ -71,7 +66,7 @@ public class GuestController {
         model.addAttribute("message", message);
         return "invitation";
     }
-/*
+
     @PostMapping("/WelcomeToSeeInvitation")
     public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
         System.out.println(invitationOpeningRequest);
@@ -89,15 +84,10 @@ public class GuestController {
             return "redirect:entry?status=LOGIN_FAILED&message=" + exception.getMessage();
         }
     }
-*/
-  /*  @GetMapping("/guestRegister")
+
+    @GetMapping("/guestRegister")
     public String showRegisterPage() {
-        return "guestRegister";*/
-/*
-
-
-    */
-
-
+        return "guestRegister";
     }
+}
 
