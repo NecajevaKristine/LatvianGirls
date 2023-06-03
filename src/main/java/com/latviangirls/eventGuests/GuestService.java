@@ -30,13 +30,13 @@ public class GuestService {
              return (List<Guest>) guestRepository.findAll();
     }
 
-    Timestamp createdAt;
+ /*   Timestamp createdAt;
 
     @PrePersist //šī metode uztaisa datumu pirms saglabāšanas
     public void guestSaveTime(){
         this.createdAt = new Timestamp(System.currentTimeMillis());
 
-    }
+    }*/
 
 
 }

@@ -20,7 +20,7 @@
 <body>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-purple w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
     <div class="w3-container">
         <h3 class="w3-padding-64"><b>EVENT<br>ORGANIZER</b></h3>
@@ -42,8 +42,8 @@
 
 
 <!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
-    <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+<header class="w3-container w3-top w3-hide-large w3-purple w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button w3-purple w3-margin-right" onclick="w3_open()">☰</a>
     <span>EVENT ORGANIZER</span>
 </header>
 
@@ -61,7 +61,7 @@
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+<div class="w3-main" style="margin-left:50px;margin-right:40px">
 
     <!-- Header -->
     <div class="w3-container" style="margin-top:80px" id="showcase">
@@ -95,40 +95,48 @@
     </div>
 
     <!-- Services -->
-    <div class="w3-container" id="invitedGuests" style="margin-top:75px">
-        <main class="margin-top">
+    <div class="w3-Main" id="invitedGuests" style="margin-left:0px;margin-right:40px">
+        <h1 class="w3-jumbo"><b>Guest managing</b></h1>
+        <h1 class="w3-xxxlarge w3-text-red"><b>Guests</b></h1>
+        <hr style="width:50px;border:5px solid rgba(183,149,231,0.76)" class="w3-round">
             <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
 
-            <div class="row">
+            <div class="row" >
                 <div class="col-lg-3">
                     <form method="post" action="/guestRegister">
-                        <table style="width:100%">
-                            <tr>
+                    <table style="width:80%">
+                        <tr>
                                 <td>Add Nickname</td>
                                 <td>Add Email</td>
                                 <td>Add phone number</td>
+                                <td> </td>
+
                             </tr>
                         <tr>
                             <td>    <input type="text" name="guestNickName" class="form-control" placeholder="Add nickname"> </td>
-
                             <td>    <input name="guestEmail" type="email" class="form-control" placeholder="Add email"></td>
-
                             <td>    <input name="guestPhoneNumber" type="tel" class="form-control" placeholder="Add phone number"></td>
-
+                            <td>    <button class="button green-theme" type="submit">Add guest</button></td>
                         </tr>
-                              <div class="col-sm-3">
-                                  <input name="guestProjectCode" type="hidden" value="1808" required><br>
-                              </div>
+                    </table>
+                            <input name="guestProjectCode" type="hidden" value="1808" required><br>
+                    </form>
+                </div>
 
-                              <div class="col-sm-2">
-                                  <button class="button green-theme" type="submit">Add guest</button>
-                              </div>
-                          </div>
-                      </form>
                   </div>
               </div>
       </div>
-      <table class="table table-sm">
+
+  <!--  <div th:if="${status!=null}">
+        <div th:if="${status == 'REGISTRATION_SUCCESS'}">
+            <span class="green-theme"> Account created! Please login to continue!</span>
+        </div>
+        <div th:if="${status == 'LOGIN_FAILED'}">
+            <span class="red-theme" th:text="${message}"</span>
+        </div>
+    </div> -->
+
+      <table class="table table-sm" style="width:100%">
           <caption>Provided list of guests!</caption>
           <thead class="table-purple">
           <tr>
@@ -162,16 +170,22 @@
         </tbody>
     </table>
 </div>
-        </main>
-    </div>
 
-    <!-- To-DO LIST -->
-    <div class="w3-container" id="designers" style="margin-top:75px">
+</div>
+
+<!-- To-DO LIST -->
+ <!--   <div class="w3-container" id="designers" style="margin-top:75px">
          <h1 class="w3-xxxlarge w3-text-red"><b>TODO LIST</b></h1>
          <hr style="width:50px;border:5px solid red" class="w3-round">
         <section th:replace="~{fragments/todo :: todoForm}"></section>
-     </div>
+     </div>-->
 
+<div class="w3-Main" id="todo" style="margin-left:340px;margin-right:40px">
+
+    <h1 class="w3-jumbo"><b>TODO LIST</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>What to do</b></h1>
+    <hr style="width:50px;border:5px solid rgba(183,149,231,0.76)" class="w3-round">
+    <h3 class="margin-top"> Let`s put data`s in the table</h3>
      <!-- Packages / Pricing Tables -->
 
     <!-- Services -->
