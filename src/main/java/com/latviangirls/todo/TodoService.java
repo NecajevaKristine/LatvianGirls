@@ -16,6 +16,11 @@ public class TodoService {
     public List<Todo> findAllTodo(){
         return (List<Todo>) todoRepository.findAll();
     }
+
+    @Transactional
+    public Todo saveTodo(Todo todo){
+        return todoRepository.save(todo);
+    }
     @Transactional
     public void addTodo (Todo todo){
         todoRepository.save(todo);
@@ -28,12 +33,12 @@ public class TodoService {
     }
 
     @Transactional
-    public Todo updateTodo (Long id, Todo todo){
+    public Todo updateTodo (Long id, Todo todoRequest){
         Todo updateTodo = null;
         if (updateTodo != null) {
-            updateTodo.setToBeDone(todo.getToBeDone());
-            updateTodo.setTimeLimit(todo.getTimeLimit());
-            updateTodo.setStatus(todo.getStatus());
+            updateTodo.setToBeDone(todoRequest.getToBeDone());
+            updateTodo.setTimeLimit(todoRequest.getTimeLimit());
+            updateTodo.setStatus(todoRequest.getStatus());
             todoRepository.save(updateTodo);
 
             return updateTodo;

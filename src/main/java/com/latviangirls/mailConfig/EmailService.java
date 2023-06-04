@@ -1,18 +1,17 @@
 /*package com.latviangirls.mailConfig;
-import org.springframework.beans.factory.annotation.Value;
+
+import com.sendgrid.*;
+//import com.sendgrid.helpers.mail.Mail;
+//import com.sendgrid.helpers.mail.objects.Email;
+//import com.sendgrid.helpers.mail.objects.Personalization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Email;
-import com.sendgrid.helpers.mail.objects.Personalization;
+//*https://www.youtube.com/watch?v=bJqAb4G9uKM
 
-/*https://www.youtube.com/watch?v=bJqAb4G9uKM*/
-/*
 @Service
 public class EmailService {
 
@@ -50,6 +49,7 @@ public class EmailService {
         Email fromEmail = new Email();
         fromEmail.setEmail("ritucis@inbox.lv");
         Email to = new Email();
+        String guestEmail = null;
         to.setEmail(guestEmail);
 
         Personalization personalization = new Personalization();
@@ -59,4 +59,5 @@ public class EmailService {
         return null;
     }
 
-}*/
+}
+*/

@@ -1,4 +1,4 @@
-package com.latviangirls.eventGuests;
+/*package com.latviangirls.eventGuests;
 
 public interface GuestService {
     default Iterable<Guest> getAllGuests(){
@@ -15,3 +15,4 @@ public interface GuestService {
 
     void createNewGuest(Guest guest);
 }
+*/

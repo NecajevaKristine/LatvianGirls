@@ -1,4 +1,4 @@
-package com.latviangirls.mailConfig;
+/*package com.latviangirls.mailConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,4 +16,4 @@ public class EmailController {
 
         return "";
     }
-}
+}*/

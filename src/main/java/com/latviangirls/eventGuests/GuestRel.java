@@ -1,4 +1,4 @@
-package com.latviangirls.eventGuests;
+/*package com.latviangirls.eventGuests;
 
 
 
@@ -8,3 +8,4 @@ public enum GuestRel {
     Close_friend,
     Partner_of_friend,
 }
+*/

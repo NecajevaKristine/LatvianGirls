@@ -1,4 +1,4 @@
-package com.latviangirls.SendEmail;
+/*package com.latviangirls.SendEmail;
 
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,3 +46,4 @@ public class EmailServiceImpl implements EmailService{
         }
     }
 }
+*/

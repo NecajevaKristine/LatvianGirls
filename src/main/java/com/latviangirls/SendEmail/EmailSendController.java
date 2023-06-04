@@ -1,4 +1,4 @@
-package com.latviangirls.SendEmail;
+/*package com.latviangirls.SendEmail;
 
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,4 @@ public class EmailSendController {
         return emailService.sendEmail(file, to, cc, subject, body);
     }
 
-
-
-
-}
+*/

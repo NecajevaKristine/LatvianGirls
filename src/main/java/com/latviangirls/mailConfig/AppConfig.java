@@ -1,4 +1,4 @@
-package com.latviangirls.mailConfig;
+/*package com.latviangirls.mailConfig;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
-import static sun.net.NetProperties.props;
+//import static sun.net.NetProperties.props;
 
 @Configuration
 public class AppConfig {
@@ -35,8 +35,8 @@ public class AppConfig {
         javaMailSender.setPassword(mailPassword);
 
         Properties properties = javaMailSender.getJavaMailProperties();
-        props.put("mail.smtp.starttls.enable","true");
+       // props.put("mail.smtp.starttls.enable","true");
 
         return javaMailSender;
     }
-}
+}*/

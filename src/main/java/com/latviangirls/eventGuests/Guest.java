@@ -1,4 +1,4 @@
-package com.latviangirls.eventGuests;
+/*package com.latviangirls.eventGuests;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,10 +23,10 @@ public class Guest {
     private String guestNickName;
     private String guestPhoneNumber;
 
-    /* private Enum guestRel;
-     private Long guestCount;
-     private Long guestAdult;
-     private Long guestChild;*/
+    // private Enum guestRel;
+    // private Long guestCount;
+     //private Long guestAdult;
+    // private Long guestChild;
 
     private String guestEmail;
     private Long guestCount;
@@ -46,4 +46,4 @@ public class Guest {
 
 
 }
-
+*/
