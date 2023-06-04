@@ -22,21 +22,21 @@ public class TodoController {
         return "todoPage";
     }*/
 
-   @GetMapping("/profile")
+   @GetMapping("/")
     public String todoList(Model model){
        model.addAttribute("todo", todoService.findAllTodo());
-        return "todo";
+        return "userPage";
     }
 
     @CrossOrigin
-    @PostMapping("/addTodo")
+    @PostMapping("/todo/addTodo")
     public String createTodo (@RequestBody() Todo todoRequest){
         Todo todo = new Todo();
         todo.setToBeDone(todoRequest.getToBeDone());
         todo.setTimeLimit(todoRequest.getTimeLimit());
         todo.setStatus(todoRequest.getStatus());
         todoService.addTodo(todo);
-        return  "redirect:profile";
+        return  "redirect:profile/todo";
     }
 
     @CrossOrigin
