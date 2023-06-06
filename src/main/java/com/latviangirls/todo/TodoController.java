@@ -22,9 +22,9 @@ public class TodoController {
         return "userPage";
     }*/
 
-   @GetMapping("/profile/todo")
+    @GetMapping("/profile/todo")
     public String todoList(Model model){
-       model.addAttribute("todo", todoService.findAllTodo());
+        model.addAttribute("todo", todoService.findAllTodo());
         return "todoPage";
     }
     @CrossOrigin

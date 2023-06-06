@@ -26,50 +26,50 @@
 </nav>
 <br>
 <br>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 
-        <h1 class="text-center">create todo</h1>
-        <div class="card-body">
-          <form th:action="@{/todo}" th:object="${todos}" method="post">
-            <div class="form-group">
-              <label>to be done</label>
-              <input
-                type="text"
-                name="toBeDone"
-                th:field="*{toBeDone}"
-                class="form-control"
-                placeholder="Enter what should be to be done"
-              />
-            </div>
-            <div class="form-group">
-              <label>time limit</label>
-              <input
-                      type="text"
-                      name="timeLimit"
-                      th:field="*{timeLimit}"
-                      class="form-control"
-                      placeholder="Enter time limit"
-              />
-            </div>
-            <div class="form-group">
-              <label>status</label>
-              <input
-                      type="text"
-                      name="status"
-                      th:field="*{status}"
-                      class="form-control"
-                      placeholder="Enter status"
-              />
-            </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">
-                Submit
-              </button>
-            </div>
+      <h1 class="text-center">create todo</h1>
+      <div class="card-body">
+        <form th:action="@{/todo}" th:object="${todos}" method="post">
+          <div class="form-group">
+            <label>to be done</label>
+            <input
+                    type="text"
+                    name="toBeDone"
+                    th:field="*{toBeDone}"
+                    class="form-control"
+                    placeholder="Enter what should be to be done"
+            />
+          </div>
+          <div class="form-group">
+            <label>time limit</label>
+            <input
+                    type="text"
+                    name="timeLimit"
+                    th:field="*{timeLimit}"
+                    class="form-control"
+                    placeholder="Enter time limit"
+            />
+          </div>
+          <div class="form-group">
+            <label>status</label>
+            <input
+                    type="text"
+                    name="status"
+                    th:field="*{status}"
+                    class="form-control"
+                    placeholder="Enter status"
+            />
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
 
-          </form>
-        </div>
-  </body>
+        </form>
+      </div>
+</body>
 </html>

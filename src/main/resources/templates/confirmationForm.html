@@ -21,17 +21,17 @@
       <input type="hidden" th:field="*{guestEmail}"/>
       <tr>
         <td>
-        <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance} ">
+          <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance} ">
             <option value="YES">Yes, of course!</option>
             <option value="NO">Can not participate!</option>
             <option value="MAYBE">I would like, but I will let You know later!</option>
-        </select></td>
+          </select></td>
         <td><input th:field="*{guestCount}" type="number" class="form-control" required></td>
         <td><input th:field="*{guestComment}" type="text" class="form-control"></td>
         <td><button class="btn btn-primary" type="submit">Confirm!</button></td>
       </tr>
     </table>
-   </form>
+  </form>
 </main>
 </body>
 </html>

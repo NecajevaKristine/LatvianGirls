@@ -48,54 +48,49 @@
     <hr style="width:50px;border:5px solid purple" class="w3-round">
 
     <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-             <div class="row" >
-                <div class="col-lg-3">
-                    <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
-                </div>
-            </div>
+    <div class="row" >
+        <div class="col-lg-3">
+            <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
+        </div>
     </div>
-    </main>
-
-    </div>
-
-       <table class="table table-sm" style="margin-left:340px;margin-right:40px">
-          <caption>List of provided guests!</caption>
-          <thead class="table-purple">
-          <tr>
-              <th>Nickname</th>
-              <th>Phone number</th>
-              <th>Email</th>
-              <th>Invitation acceptance</th>
-              <th>Comment from guest</th>
-              <th>Invitation link</th>
-              <th>Edit info</th>
-              <th>Delete guest</th>
-          </tr>
-          </thead>
-
-          <tbody>
-          <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
-            <td th:text="${guest.guestNickName}"></td>
-            <td th:text="${guest.guestPhoneNumber}"></td>
-            <td th:text="${guest.guestEmail}"></td>
-            <td th:text="${guest.guestInvitationAcceptance}"></td>
-            <td th:text="${guest.guestComment}"></td>
-            <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.guestEmail})}" class="btn btn-primary">Send link</a></td>
-            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.guestEmail})}" class="btn btn-primary">Edit info</a></td>
-            <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.guestId})}" class="btn btn-danger">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
+</div>
+<table class="table table-sm" style="margin-left:340px;margin-right:40px">
+    <caption>List of provided guests!</caption>
+    <thead class="table-purple">
+    <tr>
+        <th>Nickname</th>
+        <th>Phone number</th>
+        <th>Email</th>
+        <th>Invitation acceptance</th>
+        <th>Comment from guest</th>
+        <th>Invitation link</th>
+        <th>Edit info</th>
+        <th>Delete guest</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
+        <td th:text="${guest.getGuestNickName()}"></td>
+        <td th:text="${guest.getGuestPhoneNumber()}"></td>
+        <td th:text="${guest.getGuestEmail()}"></td>
+        <td th:text="${guest.getGuestInvitationAcceptance()}"></td>
+        <td th:text="${guest.getGuestComment()}"></td>
+        <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
+        <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>
+        <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.getGuestId()})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 </div>
 
 <!-- To-DO LIST -->
- <!--   <div class="w3-container" id="designers" style="margin-top:75px">
-         <h1 class="w3-xxxlarge w3-text-red"><b>TODO LIST</b></h1>
-         <hr style="width:50px;border:5px solid red" class="w3-round">
-        <section th:replace="~{fragments/todo :: todoForm}"></section>
-     </div>-->
+<!--   <div class="w3-container" id="designers" style="margin-top:75px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>TODO LIST</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+       <section th:replace="~{fragments/todo :: todoForm}"></section>
+    </div>-->
 
 <div class="w3-Main" id="todo" style="margin-left:340px;margin-right:40px">
 
@@ -103,7 +98,7 @@
     <h1 class="w3-xxxlarge w3-text-red"><b>What to do</b></h1>
     <hr style="width:50px;border:5px solid rgba(183,149,231,0.76)" class="w3-round">
     <h3 class="margin-top"> Let`s put data`s in the table</h3>
-     <!-- Packages / Pricing Tables -->
+    <!-- Packages / Pricing Tables -->
 
     <!-- Services -->
     <div class="w3-container" id="invitationPage" style="margin-top:75px">
@@ -113,42 +108,42 @@
 <br>
 <br>
 <div class="w3-Main" id="invitationPage" style="margin-left:340px;margin-right:40px">
-        <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
-        <!-- Contact -->
+    <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
+    <!-- Contact -->
 
-        <div class="w3-container" id="designers" style="margin-top:20px">
-            <h1 class="w3-xlarge w3-text-purple"><b>Invitation.</b></h1>
-            <hr style="width:50px;border:5px solid purple" class="w3-round">
-            <p>The best thing in the world.</p>
-            <p><b>Our revelers</b>:</p>
-        </div>
-        <!-- revelers -->
-        <div class="w3-row-padding w3-grayscale">
-            <div class="w3-col m4 w3-margin-bottom">
-                <div class="w3-light-grey">
-                    <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-                    <div class="w3-container">
-                        <h3>John Doe</h3>
-                        <p class="w3-opacity">groom</p>
-                        <p>.........................</p>
-                    </div>
+    <div class="w3-container" id="designers" style="margin-top:20px">
+        <h1 class="w3-xlarge w3-text-purple"><b>Invitation.</b></h1>
+        <hr style="width:50px;border:5px solid purple" class="w3-round">
+        <p>The best thing in the world.</p>
+        <p><b>Our revelers</b>:</p>
+    </div>
+    <!-- revelers -->
+    <div class="w3-row-padding w3-grayscale">
+        <div class="w3-col m4 w3-margin-bottom">
+            <div class="w3-light-grey">
+                <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+                <div class="w3-container">
+                    <h3>John Doe</h3>
+                    <p class="w3-opacity">groom</p>
+                    <p>.........................</p>
                 </div>
             </div>
         </div>
-        <div class="w3-col m4 w3-margin-bottom">
-            <div class="w3-light-grey">
-               <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-                    <div class="w3-container">
-                        <h3>Jane Doe</h3>
-                        <p class="w3-opacity">the bride</p>
-                        <p>....................................</p>
-                    </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+        <div class="w3-light-grey">
+            <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+            <div class="w3-container">
+                <h3>Jane Doe</h3>
+                <p class="w3-opacity">the bride</p>
+                <p>....................................</p>
             </div>
         </div>
     </div>
 </div>
 </div>
-    <!-- Contact -->
+</div>
+<!-- Contact -->
 <!-- logout -->
 <div class="w3-container" id="logout" style="margin-top:75px"></div>
 <div class="w3-Main" id="logout" style="margin-left:340px;margin-right:40px">
@@ -159,25 +154,25 @@
         <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
     </form>
 </div>
-    <script>
-        // Script to open and close sidebar
-        function w3_open() {
-            document.getElementById("mySidebar").style.display = "block";
-            document.getElementById("myOverlay").style.display = "block";
-        }
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
 
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
-            document.getElementById("myOverlay").style.display = "none";
-        }
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
 
-        // Modal Image Gallery
-        function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-            var captionText = document.getElementById("caption");
-            captionText.innerHTML = element.alt;
-        }
-    </script>
+    // Modal Image Gallery
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+</script>
 </body>
 </html>

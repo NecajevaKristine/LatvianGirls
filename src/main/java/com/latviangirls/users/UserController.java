@@ -19,11 +19,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/profile")
-    public String displayUserPage(){
-        return "userPage";
-    }
-
     @PostMapping("/register")
     public String handleUserRegistration (User user){
         try{
@@ -35,16 +30,27 @@ public class UserController {
         }
     }
     @PostMapping("/login")
-    public String handleLogin(LoginRequest loginRequest){
+    public String handleLogin(LoginRequest loginRequest, HttpServletResponse response){
         try {
             User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
+            if (loggedInUser == null) throw new RuntimeException("User not found");
+
+            Cookie cookie = new Cookie("loggedInUserId", loggedInUser.getId().toString());
+            cookie.setMaxAge(60*60*60*24);
+            response.addCookie(cookie);
+
             return "redirect:profile";
         }catch (Exception exception){
             return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
         }
     }
 
-    @GetMapping("/userPage")
+    @GetMapping("/entry")
+    public String displayMainPageAfterRegister(){
+        return "entry";
+    }
+
+    @GetMapping("/logout")
     public String logout(
             @CookieValue(value = "loggedInUserId", defaultValue = "") String userId,
             HttpServletResponse response
@@ -61,4 +67,3 @@ public class UserController {
     }
 
 }
-
