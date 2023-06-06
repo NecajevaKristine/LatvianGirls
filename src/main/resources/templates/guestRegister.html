@@ -6,46 +6,6 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
-<body>
-
-<main class="margin-top">
-    <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-
-    <form method="post" action="/guestRegister">
-        <div>
-            <label>Enter guest</label>
-            <input name="guestNickName" type="text" required>
-        </div>
-        <div>
-            <label>Guest`s phone number</label>
-            <input name="guestPhoneNumber" minlength="8" type="text" required>
-        </div>
-        <!-- <div>
-             <label>Relationships</label>
-             <input name="guestRel" type="text" required>
-         </div>-->
-        <div>
-            <label>Guest`s email</label>
-            <input name="guestEmail" type="email" required>
-        </div>
-        <!--    <div>
-                <label>Number of guests</label>
-                <input name="guestCount" type="number" required>
-            </div>
-            <div>
-                <label>Guest-Adult </label>
-                <input name="guestAdult" type="number" required>
-            </div>
-            <div>
-                <label>Guest-Children </label>
-                <input name="guestChild" type="number" required>-->
-        <input name="guestProjectCode" type="hidden" value="1808" required><br>
-        <button class="button green-theme" type="submit">Register</button>
-        <button class="button red-theme" type="reset">Clear data`s</button>
-        </div>
-    </form>
-</main>
-</body>
 </html>
 <form action="#" method="post" th:action="@{/createGuest}" th:object="${guest}">
         <table style="width:80%">
