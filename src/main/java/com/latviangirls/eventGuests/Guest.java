@@ -19,8 +19,8 @@ import java.sql.Timestamp;
 public class Guest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String guestId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long guestId;
     @Column(name="nickname")
     private String guestNickName;
     private String guestPhoneNumber;

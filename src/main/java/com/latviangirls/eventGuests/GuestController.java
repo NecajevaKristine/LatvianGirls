@@ -67,11 +67,12 @@ public class GuestController {
             return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
-/*
+
     @GetMapping("/deleteGuest/{guestId}")
-    public void deleteByGuestId(@PathVariable("guestId") String guestId) {
-        this.guestService.deleteById(guestId);
-    }*/
+    public String deleteByGuestId(@PathVariable("guestId") Long guestId) {
+        this.guestServiceImpl.deleteById(guestId);
+        return "redirect:/profile";
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Beidzās sadaļa, kas atbild par viesu reģistru
 
@@ -83,6 +84,8 @@ public class GuestController {
 
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
+
+
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "message", required = false) String message,
             Model model //transfers info to html
