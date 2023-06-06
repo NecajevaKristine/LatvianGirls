@@ -1,5 +1,6 @@
 package com.latviangirls.todo;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 /*import ch.qos.logback.core.model.Model;*/
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping
 public class TodoController {
 
@@ -35,15 +36,15 @@ public class TodoController {
         return  "add_todo";
     }
     @CrossOrigin
-    @PostMapping("addTodo")
-    public String saveTodo(@ModelAttribute("todos")Todo todo){
+    @PostMapping("/todo")
+    public String saveTodo(Todo todo){
         todoService.saveTodo(todo);
-        return "redirect:/profile/todo/add_todo";
+        return "redirect:/profile/todo/allTodo";
     }
     @CrossOrigin
     @GetMapping("profile/todo/allTodo")
-    public String getAllTodo(List allTodo) {
-        return "allTodo";
+    public String getAllTodo() {
+        return "todo/allTodo";
     }
     @CrossOrigin
     @GetMapping("profile/todo/{id}")
@@ -68,14 +69,11 @@ public class TodoController {
     }
 
 
-
   /*  @GetMapping("/todo/updateTodo")
     public String updateTodoPage(@PathVariable Long id, Model model){
         model.addAttribute("todos", todoService.updateTodo());
         return "update_todo";
     }*/
-
-
 
     @CrossOrigin
     @DeleteMapping("profile/todo/{id}")
@@ -83,4 +81,6 @@ public class TodoController {
         todoService.deleteTodo(id);
         return "redirect:/profile/todo";
     }
+
+
 }

@@ -1,4 +1,4 @@
-/*package com.latviangirls.mailConfig;
+package com.latviangirls.mailConfig;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +27,3 @@ public class NotificationController {
     }
 
 }
-*/

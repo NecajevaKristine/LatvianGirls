@@ -1,4 +1,4 @@
-/*package com.latviangirls.mailConfig;
+package com.latviangirls.mailConfig;
 
 import com.sendgrid.*;
 //import com.sendgrid.helpers.mail.Mail;
@@ -60,4 +60,3 @@ public class EmailService {
     }
 
 }
-*/

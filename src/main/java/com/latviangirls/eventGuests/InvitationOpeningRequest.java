@@ -1,4 +1,4 @@
-/*package com.latviangirls.eventGuests;
+package com.latviangirls.eventGuests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,4 +10,4 @@ import lombok.NoArgsConstructor;
 public class InvitationOpeningRequest {
     String guestEmail;
     String guestProjectCode;
-}*/
+}

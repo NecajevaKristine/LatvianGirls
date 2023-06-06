@@ -6,7 +6,6 @@
     <link rel="stylesheet"
           crossorigin="anonymous">
 </head>
-
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
@@ -36,16 +35,14 @@
         <div class="col-lg-4">
             <a th:href="@{/todo/new}" class="btn btn-primary btn-sm mb-3">add todo</a>
     </div>
-
-
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">toBeDone</th>
-                <th scope="col">timeLimit</th>
-                <th scope="col">status</th>
-                <th scope="col">action</th>
+                <th >#</th>
+                <th>toBeDone</th>
+                <th>timeLimit</th>
+                <th>status</th>
+                <th>action</th>
             </tr>
             </thead>
             <tbody>
@@ -59,25 +56,7 @@
 
                 </td>
             </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2"></td>
-                <td></td>
-            </tr>
             </tbody>
-
-
+        </table>
 </body>
 </html>

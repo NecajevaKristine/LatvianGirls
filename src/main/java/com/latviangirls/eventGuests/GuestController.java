@@ -1,4 +1,4 @@
-/*package com.latviangirls.eventGuests;
+package com.latviangirls.eventGuests;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +103,7 @@ public class GuestController {
     }
 
 
-}*/
+}
 
 
 
