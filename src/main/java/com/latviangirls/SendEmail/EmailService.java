@@ -1,4 +1,4 @@
-package com.latviangirls.SendEmail;
+/*package com.latviangirls.SendEmail;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -7,3 +7,4 @@ public interface EmailService {
 
     String sendEmail(String to, String subject, String body);
 }
+*/

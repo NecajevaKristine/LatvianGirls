@@ -1,10 +1,10 @@
 package com.latviangirls.todo;
 
-import com.latviangirls.users.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface TodoRepository extends CrudRepository<Todo, Long> {
+import java.util.Optional;
 
+public interface TodoRepository extends JpaRepository<Todo, Long> {
 }

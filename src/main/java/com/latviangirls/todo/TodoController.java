@@ -1,5 +1,8 @@
 package com.latviangirls.todo;
 
+import org.springframework.ui.Model;
+
+/*import ch.qos.logback.core.model.Model;*/
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,32 +11,44 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequestMapping
 public class TodoController {
 
     @Autowired
     public TodoService todoService;
 
+    /*@GetMapping("/profile/todo")
+    public String displayTodoPage(){
+        return "userPage";
+    }*/
+
+   @GetMapping("/profile/todo")
+    public String todoList(Model model){
+       model.addAttribute("todo", todoService.findAllTodo());
+        return "todoPage";
+    }
     @CrossOrigin
-    @PostMapping("/todo")
-    public Todo createToDo (@RequestBody() Todo toDoRequest){
+    @GetMapping("/profile/todo/addTodo")
+    public String createTodo (Model model){
         Todo todo = new Todo();
-        todo.setToBeDone(toDoRequest.getToBeDone());
-        todo.setTimeLimit(toDoRequest.getTimeLimit());
-        todo.setStatus(toDoRequest.getStatus());
-        todoService.addToDo(todo);
-        return  todo;
+        model.addAttribute("todos", todo);
+        return  "add_todo";
     }
-
     @CrossOrigin
-    @GetMapping("/todo")
-    public List getAllToDo(List allToDo) {
-        return allToDo;
+    @PostMapping("addTodo")
+    public String saveTodo(@ModelAttribute("todos")Todo todo){
+        todoService.saveTodo(todo);
+        return "redirect:/profile/todo/add_todo";
     }
-
     @CrossOrigin
-    @GetMapping("/todo/{id}")
-    public ResponseEntity <Todo> getToDo(@PathVariable Long id){
-        Optional <Todo> todo = todoService.findSingleToDo(id);
+    @GetMapping("profile/todo/allTodo")
+    public String getAllTodo(List allTodo) {
+        return "allTodo";
+    }
+    @CrossOrigin
+    @GetMapping("profile/todo/{id}")
+    public ResponseEntity <Todo> getTodo(@PathVariable Long id){
+        Optional <Todo> todo = todoService.findSingleTodo(id);
 
         if (todo.isPresent()) {
             return ResponseEntity.ok(todo.get());
@@ -41,22 +56,31 @@ public class TodoController {
             return ResponseEntity.notFound().build();
         }
     }
-
     @CrossOrigin
     @PutMapping("/todo/{id}")
-
-    public ResponseEntity<Todo>updateToDo (@PathVariable Long id, @RequestBody Todo toDoRequest){
-        Todo updatedToDo = todoService.updateToDo(id, toDoRequest);
-        if (updatedToDo !=null) {
-            return ResponseEntity.ok(updatedToDo);
+    public String updateTodo (@PathVariable Long id, @RequestBody Todo todoRequest){
+        Todo updatedTodo = todoService.updateTodo(id, todoRequest);
+        if (updatedTodo !=null) {
+            return String.valueOf(ResponseEntity.ok(updatedTodo));
         }else{
-            return  ResponseEntity.notFound().build();
+            return String.valueOf(ResponseEntity.notFound().build());
         }
     }
+
+
+
+  /*  @GetMapping("/todo/updateTodo")
+    public String updateTodoPage(@PathVariable Long id, Model model){
+        model.addAttribute("todos", todoService.updateTodo());
+        return "update_todo";
+    }*/
+
+
+
     @CrossOrigin
-    @DeleteMapping("/todo/{id}")
-    public void deleteToDo (@PathVariable Long id){
-        todoService.deleteToDo(id);
+    @DeleteMapping("profile/todo/{id}")
+    public String deleteTodo (@PathVariable Long id){
+        todoService.deleteTodo(id);
+        return "redirect:/profile/todo";
     }
 }
-

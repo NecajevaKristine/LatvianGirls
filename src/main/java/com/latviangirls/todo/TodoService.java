@@ -1,5 +1,4 @@
 package com.latviangirls.todo;
-
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,32 +11,37 @@ public class TodoService {
 
     @Autowired
     private TodoRepository todoRepository;
-    private boolean toDoToUpdate;
+    private boolean updateTodo;
 
-    public List<Todo> findAllToDo(){
+    public List<Todo> findAllTodo(){
         return (List<Todo>) todoRepository.findAll();
     }
+
     @Transactional
-    public void addToDo (Todo todo){
+    public Todo saveTodo(Todo todo){
+        return todoRepository.save(todo);
+    }
+    @Transactional
+    public void addTodo (Todo todo){
         todoRepository.save(todo);
 
     }
 
-    public Optional <Todo> findSingleToDo (Long id){
+    public Optional <Todo> findSingleTodo (Long id){
         return todoRepository.findById(id);
 
     }
 
     @Transactional
-    public Todo updateToDo (Long id, Todo todo){
-        Todo toDoUpdate = null;
-        if (toDoUpdate != null) {
-            toDoUpdate.setToBeDone(todo.getToBeDone());
-            toDoUpdate.setTimeLimit(todo.getTimeLimit());
-            toDoUpdate.setStatus(todo.getStatus());
-            todoRepository.save(toDoUpdate);
+    public Todo updateTodo (Long id, Todo todoRequest){
+        Todo updateTodo = null;
+        if (updateTodo != null) {
+            updateTodo.setToBeDone(todoRequest.getToBeDone());
+            updateTodo.setTimeLimit(todoRequest.getTimeLimit());
+            updateTodo.setStatus(todoRequest.getStatus());
+            todoRepository.save(updateTodo);
 
-            return toDoUpdate;
+            return updateTodo;
 
         } else {
             return null;
@@ -45,10 +49,10 @@ public class TodoService {
     }
 
     @Transactional
-    public void deleteToDo (Long id){
+    public void deleteTodo (Long id){
         todoRepository.deleteById(id);
     }
 
 
-}
 
+}
