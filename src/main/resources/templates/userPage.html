@@ -61,9 +61,10 @@
         <th>Nickname</th>
         <th>Phone number</th>
         <th>Email</th>
-        <th>Invitation acceptance</th>
-        <th>Comment from guest</th>
-        <th>Invitation link</th>
+        <th>Acceptance</th>
+        <th>Persons</th>
+        <th>Comment</th>
+        <th>Send link</th>
         <th>Edit info</th>
         <th>Delete guest</th>
     </tr>
@@ -74,6 +75,7 @@
         <td th:text="${guest.getGuestPhoneNumber()}"></td>
         <td th:text="${guest.getGuestEmail()}"></td>
         <td th:text="${guest.getGuestInvitationAcceptance()}"></td>
+        <td th:text="${guest.getGuestCount()}"></td>
         <td th:text="${guest.getGuestComment()}"></td>
         <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
         <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>

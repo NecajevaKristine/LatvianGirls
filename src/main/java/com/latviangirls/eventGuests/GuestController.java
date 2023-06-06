@@ -114,21 +114,21 @@ public class GuestController {
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
 
+/*
     @GetMapping("/guestRegister")
     public String showRegisterPage() {
         return "guestRegister";
     }*/
 
 /*
-    @GetMapping("/guest/confirmation/{guestId}")
+    @GetMapping("/guest/confirmation")
     public String openGuestConfForm(@PathVariable("guestEmail") {
         Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
         model.addAttribute("guest", guest);
         return "confirmationForm";
-    }*/
-/*
+    }
+
     @PostMapping("/guestAnswer/{guestEmail}")
     public String processGuestConfirmation(@PathVariable("guestEmail") String guestEmail, Model model, InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
         model.addAttribute("guest", guestEmail);
@@ -144,40 +144,8 @@ public class GuestController {
         }catch (Exception exception){
             return "redirect:entry?status=LOGIN_FAILED&message="+ exception.getMessage();
         }
-
       }*/
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    /*
-    @GetMapping("/WelcomeToSeeInvitation")
-    public String displayInvWeb(@CookieValue(value = "loggedInGuestId", defaultValue = "") String guestId, Model model) {
 
-        try {
-            if (guestId.isEmpty()) throw new RuntimeException("You are not logged in, please do it!");
-            // extract guest information from guest service and send it to html
-            model.addAttribute("guest", this.guestService.findGuestById(guestId));
-            model.addAttribute("guestList", this.guestService.findAll());
-            return "entry";
-        } catch (Exception exception) {
-            return "redirect:login?status=DISPLAY_ERROR&message=" + exception.getMessage();
-        }
-    }
-    /*
-    @PostMapping("send-message")
-    public String sendMessage(@CookieValue(value = "loggedInUserId", defaultValue = "") String userId, ChatRequest chatRequest){
-
-        try {
-            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-            Chat chat = new Chat();
-            chat.setMessage(chatRequest.getMessage());
-            chat.setSender(this.userService.findUserById(Long.parseLong(userId)));
-            this.chatRepository.save(chat);
-            // extract user information from user service and send it to html
-            return "redirect:chat-room";
-        }catch (Exception exception){
-            return "redirect:login?status=CHAT_ROOM_ERROR&message=" + exception.getMessage();
-        }
-    }*/
-//~~~~~~~~~~~~~~~~~~~~~
 
 
 

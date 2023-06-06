@@ -32,17 +32,8 @@ public class Guest {
     @Column(name="inv_accept")
     @Enumerated(EnumType.STRING)
     private ConfirmParticipation guestInvitationAcceptance;
-    private Timestamp guestResponseDate;
-    private Timestamp invitationSent;
-    @Column(name="inv_accept_date")
-    private String guestInvitationDate;
     private String guestProjectCode;
     private String guestComment;
-    @Column(name="guest_create_date")
-    private Timestamp createdAt;
-    @Column(name="info_update_date")
-    private Timestamp updatedAt;
-
 
 }
 
