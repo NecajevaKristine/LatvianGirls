@@ -54,10 +54,6 @@
                 </div>
             </div>
     </div>
-    </main>
-
-    </div>
-
        <table class="table table-sm" style="margin-left:340px;margin-right:40px">
           <caption>List of provided guests!</caption>
           <thead class="table-purple">
@@ -72,17 +68,16 @@
               <th>Delete guest</th>
           </tr>
           </thead>
-
           <tbody>
           <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
-            <td th:text="${guest.guestNickName}"></td>
-            <td th:text="${guest.guestPhoneNumber}"></td>
-            <td th:text="${guest.guestEmail}"></td>
-            <td th:text="${guest.guestInvitationAcceptance}"></td>
-            <td th:text="${guest.guestComment}"></td>
-            <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.guestEmail})}" class="btn btn-primary">Send link</a></td>
-            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.guestEmail})}" class="btn btn-primary">Edit info</a></td>
-            <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.guestId})}" class="btn btn-danger">Delete</a></td>
+            <td th:text="${guest.getGuestNickName()}"></td>
+            <td th:text="${guest.getGuestPhoneNumber()}"></td>
+            <td th:text="${guest.getGuestEmail()}"></td>
+            <td th:text="${guest.getGuestInvitationAcceptance()}"></td>
+            <td th:text="${guest.getGuestComment()}"></td>
+            <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
+            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>
+            <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.getGuestId()})}" class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>

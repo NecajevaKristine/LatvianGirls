@@ -11,46 +11,61 @@ import org.springframework.ui.Model;
 
 @Controller
 public class GuestController {
-
+    private GuestServiceImpl guestServiceImpl;
 
     @Autowired
-    public GuestController(GuestService guestService) {
+    public GuestController(GuestServiceImpl guestServiceImpl) {
         super();
-        this.guestService = guestService;
+        this.guestServiceImpl = guestServiceImpl;
     }
 
-    //Zemāk esošos izmantosim guest reģistram un tabulai
-    @Autowired
-    private GuestService guestService;
-
-
     //handler method to handle list guests and return mode ad view
-    @GetMapping("/")
-    public String viewGuestList(Model model) {
-        model.addAttribute("guestList", guestService.getAllGuests()); //izsauc no guestService metodi, kas iedod visu listi ar viesiem
-        return "userPage";
+    @GetMapping("/profile")
+    public String viewGuestList(@CookieValue(value = "loggedInUserId") String userId, Model model) {
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            model.addAttribute("guestList", this.guestServiceImpl.getAllGuests()); //izsauc no guestService metodi, kas iedod visu listi ar viesiem
+            return "userPage";
+        } catch (Exception e) {
+            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+        }
     }
 
     @GetMapping("/guest/new")
-    public String openGuestRegisterForm(Model model) {
+    public String openGuestRegisterForm(@CookieValue(value = "loggedInUserId") String userId,Model model) {
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
         Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
         model.addAttribute("guest", guest);
         return "guestRegister";
+    } catch (Exception e) {
+            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+        }
     }
 
     @PostMapping("/createGuest")
-    public String processGuestRegistration(@ModelAttribute("guest") Guest guest) {
+    public String processGuestRegistration(@CookieValue(value = "loggedInUserId") String userId, @ModelAttribute("guest") Guest guest) {
         //save guest to data base
-        guestService.saveGuest(guest);
-        return "redirect:/";
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+        guestServiceImpl.saveGuest(guest);
+        return "redirect:/profile";
+    }catch (Exception e) {
+            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+        }
     }
 
 
     @GetMapping("/showUpdateForm/{guestEmail}")
-    public String showFormForUpdate(@PathVariable("guestEmail") String guestEmail, Model model) {
-        Guest guest = guestService.getGuestByGuestEmail(guestEmail);
+    public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId, @PathVariable("guestEmail") String guestEmail, Model model) {
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+        Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
         model.addAttribute("guest", guest);
         return "update_guestInfo";
+    } catch (Exception e) {
+            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+        }
     }
 /*
     @GetMapping("/deleteGuest/{guestId}")
@@ -80,7 +95,7 @@ public class GuestController {
     @PostMapping("/WelcomeToSeeInvitation")
     public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
         try {
-            Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
+            Guest loggedInGuest = this.guestServiceImpl.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
             if (loggedInGuest == null)
                 throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
 

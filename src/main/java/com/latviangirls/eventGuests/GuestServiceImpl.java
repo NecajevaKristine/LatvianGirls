@@ -10,7 +10,7 @@ public class GuestServiceImpl implements GuestService{
 
     @Autowired
     private GuestRepository guestRepository;
-    @Override
+
     public List<Guest> getAllGuests() { //metode, kas iedos visu viesu listi
         return guestRepository.findAll();
     }//metode, kas iedos visu viesu listi

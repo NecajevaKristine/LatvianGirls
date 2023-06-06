@@ -3,9 +3,7 @@ package com.latviangirls.eventGuests;
 import java.util.List;
 
 public interface GuestService {
-    default List<Guest> getAllGuests(){
-        return null;
-    }
+
     void saveGuest(Guest guest);
 
     void deleteById(String guestId);
@@ -14,6 +12,4 @@ public interface GuestService {
 
     Guest verifyGuest(String guestEmail, String guestProjectCode);
     List<Guest> findGuestById(String guestId);
-
-    List<Guest> findAll();
 }
