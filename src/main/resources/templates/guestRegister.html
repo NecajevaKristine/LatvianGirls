@@ -19,9 +19,9 @@
                 <td> </td>
             </tr>
                 <tr>
-                <td>    <input type="text" th:field="*{guestNickName}" class="form-control" placeholder="Add nickname"> </td>
-                <td>    <input th:field="*{guestEmail}" type="email" class="form-control" placeholder="Add email"></td>
-                <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control" placeholder="Add phone number"></td>
+                <td>    <input type="text" th:field="*{guestNickName}" class="form-control" placeholder="Add nickname" required> </td>
+                <td>    <input th:field="*{guestEmail}" type="email" class="form-control" placeholder="Add email" required></td>
+                <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control" placeholder="Add phone number" required></td>
                 <td>    <button class="btn btn-primary" type="submit">Greate guest</button></td>
             </tr>
         </table>

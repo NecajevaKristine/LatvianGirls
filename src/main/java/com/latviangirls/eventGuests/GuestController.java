@@ -2,6 +2,9 @@ package com.latviangirls.eventGuests;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -42,19 +45,26 @@ public class GuestController {
         return "redirect:/";
     }
 
+
     @GetMapping("/showUpdateForm/{guestEmail}")
     public String showFormForUpdate(@PathVariable("guestEmail") String guestEmail, Model model) {
         Guest guest = guestService.getGuestByGuestEmail(guestEmail);
         model.addAttribute("guest", guest);
         return "update_guestInfo";
     }
-
+/*
     @GetMapping("/deleteGuest/{guestId}")
-    public void deleteByGuestId(@PathVariable("guestId") Long guestId) {
+    public void deleteByGuestId(@PathVariable("guestId") String guestId) {
         this.guestService.deleteById(guestId);
-    }
+    }*/
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Beidzās sadaļa, kas atbild par viesu reģistru
+
+    /*    @GetMapping("/WelcomeToSeeInvitation")
+        public String redirectToRegistrationPage() {
+                  return "redirect:/entry";
+        }*/
+
 
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
@@ -69,7 +79,6 @@ public class GuestController {
 
     @PostMapping("/WelcomeToSeeInvitation")
     public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
-        System.out.println(invitationOpeningRequest);
         try {
             Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
             if (loggedInGuest == null)
@@ -78,16 +87,83 @@ public class GuestController {
             Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
             cookie.setMaxAge(3000);
             response.addCookie(cookie);
+
             return "redirect:WelcomeToSeeInvitation";
 
         } catch (Exception exception) {
             return "redirect:entry?status=LOGIN_FAILED&message=" + exception.getMessage();
         }
     }
+}
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
 
     @GetMapping("/guestRegister")
     public String showRegisterPage() {
         return "guestRegister";
-    }
-}
+    }*/
 
+/*
+    @GetMapping("/guest/confirmation/{guestId}")
+    public String openGuestConfForm(@PathVariable("guestEmail") {
+        Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
+        model.addAttribute("guest", guest);
+        return "confirmationForm";
+    }*/
+/*
+    @PostMapping("/guestAnswer/{guestEmail}")
+    public String processGuestConfirmation(@PathVariable("guestEmail") String guestEmail, Model model, InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
+        model.addAttribute("guest", guestEmail);
+        try {
+            Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
+            if(loggedInGuest==null) throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
+
+            Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
+            cookie.setMaxAge(3000);
+            response.addCookie(cookie);
+            return "redirect:WelcomeToSeeInvitation";
+
+        }catch (Exception exception){
+            return "redirect:entry?status=LOGIN_FAILED&message="+ exception.getMessage();
+        }
+
+      }*/
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /*
+    @GetMapping("/WelcomeToSeeInvitation")
+    public String displayInvWeb(@CookieValue(value = "loggedInGuestId", defaultValue = "") String guestId, Model model) {
+
+        try {
+            if (guestId.isEmpty()) throw new RuntimeException("You are not logged in, please do it!");
+            // extract guest information from guest service and send it to html
+            model.addAttribute("guest", this.guestService.findGuestById(guestId));
+            model.addAttribute("guestList", this.guestService.findAll());
+            return "entry";
+        } catch (Exception exception) {
+            return "redirect:login?status=DISPLAY_ERROR&message=" + exception.getMessage();
+        }
+    }
+    /*
+    @PostMapping("send-message")
+    public String sendMessage(@CookieValue(value = "loggedInUserId", defaultValue = "") String userId, ChatRequest chatRequest){
+
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            Chat chat = new Chat();
+            chat.setMessage(chatRequest.getMessage());
+            chat.setSender(this.userService.findUserById(Long.parseLong(userId)));
+            this.chatRepository.save(chat);
+            // extract user information from user service and send it to html
+            return "redirect:chat-room";
+        }catch (Exception exception){
+            return "redirect:login?status=CHAT_ROOM_ERROR&message=" + exception.getMessage();
+        }
+    }*/
+//~~~~~~~~~~~~~~~~~~~~~
+
+
+
+/*https://www.youtube.com/watch?v=QwQuro7ekvc&t=2246s*/
