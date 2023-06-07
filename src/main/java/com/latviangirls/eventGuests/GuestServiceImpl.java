@@ -5,35 +5,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GuestServiceImpl implements GuestService{
-
+public class GuestServiceImpl {
+    private GuestRepository guestRepository;
 
     @Autowired
-    private GuestRepository guestRepository;
+    private GuestServiceImpl(GuestRepository guestRepository){
+        this.guestRepository = guestRepository;
+    }
+
 
     public List<Guest> getAllGuests() { //metode, kas iedos visu viesu listi
         return guestRepository.findAll();
     }//metode, kas iedos visu viesu listi
-    @Override
+
     public void saveGuest(Guest guest) {
         this.guestRepository.save(guest);
     }
-    @Override
+
     public Guest getGuestByGuestEmail(String guestEmail) {
         return this.guestRepository.findByGuestEmail(guestEmail);
     }
 
-    @Override
-    public void deleteById(String guestId){
-        this.guestRepository.deleteById(Long.valueOf(guestId));
+    public void deleteById(Long guestId){
+        this.guestRepository.deleteById(guestId);
     }
 
     public Guest verifyGuest(String guestEmail, String guestProjectCode) {
         Guest user = this.guestRepository.findGuestByGuestEmailAndGuestProjectCode(guestEmail, guestProjectCode);
-        System.out.println();
         return user;
     }
-    @Override
+
     public List<Guest> findGuestById(String guestId) {
         return this.guestRepository.findAll();
     }
@@ -42,4 +43,11 @@ public class GuestServiceImpl implements GuestService{
     }
 
 
+    public void updateGuest(Guest guest) {
+        this.guestRepository.save(guest);
+    }
+
+    public Guest getGuestById(Long guestId) {
+        return this.guestRepository.findGuestByGuestId(guestId);
+    }
 }
