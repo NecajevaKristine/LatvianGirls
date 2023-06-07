@@ -6,10 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
-
 @Data
 @Entity
 @AllArgsConstructor
@@ -19,8 +15,8 @@ import java.sql.Timestamp;
 public class Guest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String guestId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long guestId;
     @Column(name="nickname")
     private String guestNickName;
     private String guestPhoneNumber;
@@ -34,6 +30,5 @@ public class Guest {
     private ConfirmParticipation guestInvitationAcceptance;
     private String guestProjectCode;
     private String guestComment;
-
-}
+  }
 

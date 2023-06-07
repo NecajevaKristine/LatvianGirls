@@ -16,7 +16,7 @@
 </head>
 <body>
 <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-purple w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+    <nav class="w3-sidebar w3-purple w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:250px;font-weight:bold;" id="mySidebar"><br>
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
          <div class="w3-container">
         <h3 class="w3-padding-64"><b>EVENT<br>ORGANIZER</b></h3>
@@ -24,7 +24,6 @@
     <div class="w3-bar-block">
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
         <a href="#guests" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Guests</a>
-        <a href="#todo" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Todo</a>
         <a href="#invitationPage" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">See invitation page</a>
         <br>
         <br>
@@ -33,28 +32,27 @@
     </nav>
 <!-- !PAGE CONTENT! -->
     <div class="w3-container" id="beginning" style="margin-top:25px"></div>
-    <div class="w3-Main" id="beginning" style="margin-left:340px;margin-right:40px">
+    <div class="w3-Main" id="beginning" style="margin-left:300px;margin-right:40px">
         <h1 class="w3-jumbo-50px"><b>Home</b></h1>
          <h1 class="w3-xlarge w3-text-purple"><b>Beginning.</b></h1>
         <hr style="width:50px;border:5px solid purple" class="w3-round">
     </div>
 <!-- !PAGE CONTENT! -->
     <div class="w3-container" id="guests" style="margin-top:75px"></div>
-    <div class="w3-main" id="guests" style="margin-left:340px;margin-right:40px">
+    <div class="w3-main" id="guests" style="margin-left:300px;margin-right:40px">
         <h1 class="w3-jumbo-50px"><b>Guest managing</b></h1>
         <h1 class="w3-xlarge w3-text-purple"><b>Guests.</b></h1>
         <hr style="width:50px;border:5px solid purple" class="w3-round">
-         <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-         <div class="row" >
-             <div class="col-lg-3">
-            <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
-             </div>
-        </div>
+        <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
+        <!--<div class="row" ></div>-->
+           <!-- <div class="col-lg-3"></div>-->
+        <a th:href="@{/guest/new}"class="btn btn-primary panel w3-purple">Add new guest</a>
     </div>
-    <table class="table table-sm" style="margin-left:340px;margin-right:40px">
+<div class="w3-container">
+    <table class="table w3-table-all-small"style="margin-left:280px;margin-right:40px">
         <caption>List of provided guests!</caption>
-         <thead class="table-purple">
-         <tr>
+         <thead class="w3-medium">
+         <tr class="w3-grey">
               <th>Nickname</th>
               <th>Phone number</th>
               <th>Email</th>
@@ -66,7 +64,7 @@
              <th>Delete guest</th>
          </tr>
          </thead>
-        <tbody>
+        <tbody class="w3-left-align">
             <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
             <td th:text="${guest.getGuestNickName()}"></td>
             <td th:text="${guest.getGuestPhoneNumber()}"></td>
@@ -80,18 +78,10 @@
             </tr>
         </tbody>
     </table>
-    <div class="w3-container" id="todo" style="margin-top:75px"></div>
-    <div class="w3-Main" id="todo" style="margin-left:340px;margin-right:40px">
-        <h1 class="w3-jumbo-50px"><b>Todo List</b></h1>
-        <h1 class="w3-xlarge w3-text-purple"><b>What to do.</b></h1>
-        <hr style="width:50px;border:5px solid purple" class="w3-round">
-        <section th:replace="~{fragments/todo::todoForm}"></section>
-        <h3 class="margin-top"> Let`s put data`s in the table</h3>
-    <!-- Services -->
-        <div class="w3-container" id="invitationPage" style="margin-top:75px">
-         </div>
-    </div>
-    <div class="w3-Main" id="invitationPage" style="margin-left:340px;margin-right:40px">
+</div>
+
+<div class="w3-container" id="invitationPage" style="margin-top:75px"></div>
+       <div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
         <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
     <!-- Contact -->
         <div class="w3-container" id="designers" style="margin-top:20px">
@@ -100,7 +90,9 @@
             <p>The best thing in the world.</p>
             <p><b>Our revelers</b>:</p>
         </div>
+       </div>
     <!-- revelers -->
+<div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
         <div class="w3-row-padding w3-grayscale">
             <div class="w3-col m4 w3-margin-bottom">
                 <div class="w3-light-grey">
@@ -113,28 +105,36 @@
                 </div>
             </div>
         </div>
-        <div class="w3-col m4 w3-margin-bottom">
-            <div class="w3-light-grey">
-                    <img src="/w3images/team1.jpg" alt="/Rita" style="width:100%">
-                <div class="w3-container">
-                 <h3>Rita</h3>
-                 <p class="w3-opacity">the bride</p>
-                <p>....................................</p>
-                </div>
+</div>
+    <div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
+        <div class="w3-row-padding w3-grayscale">
+            <div class="w3-col m4 w3-margin-bottom">
+                 <div class="w3-light-grey">
+                        <img src="/w3images/team1.jpg" alt="/Rita" style="width:100%">
+                     <div class="w3-container">
+                         <h3>Rita</h3>
+                         <p class="w3-opacity">the bride</p>
+                         <p>....................................</p>
+                     </div>
+                 </div>
             </div>
         </div>
-    </div>
+  </div>
 
 <!-- logout -->
-    <div class="w3-container" id="logout" style="margin-top:75px"></div>
-    <div class="w3-Main" id="logout" style="margin-left:340px;margin-right:40px">
+
+  <div class="w3-container" id="logout" style="margin-top:75px">
+    <div class="w3-Main" id="logout" style="margin-left:300px;margin-right:40px">
         <h1 class="w3-jumbo-50px"><b>Logout</b></h1>
         <hr style="width:50px;border:5px solid purple" class="w3-round">
-         <p> See you next time!</p>
+        <p> See you next time!</p>
         <form action="/entry" target="_blank">
-            <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
+        <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
         </form>
     </div>
+  </div>
+       </div>
+
 <script>
     // Script to open and close sidebar
     function w3_open() {
