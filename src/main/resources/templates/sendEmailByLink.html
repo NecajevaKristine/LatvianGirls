@@ -9,39 +9,22 @@
 <body>
 
 <main class="container">
-  <form action="#" method="post" th:action="@{/createEmail}" th:object="${guest}">
+  <form action="#" method="post" th:action="@{/createEmail}" th:object="${guest,sendSimpleEmail} >
     <table style="width:80%">
       <tr>
-        <td>Add Nickname</td>
-        <td>Add Email</td>
-        <td>Add phone number</td>
+        <td>Add Subject to Email</td>
+        <td>Email to send invitation</td>
+        <td>Add body of the email</td>
         <td> </td>
       </tr>
       <tr>
-        <td>    <input type="text" th:field="*{guestNickName}" class="form-control"> </td>
-        <td>    <input th:field="*{guestEmail}" type="email" class="form-control" ></td>
-        <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control"></td>
-        <td>    <button class="btn btn-primary" type="submit">Update guest info</button></td>
+        <td>    <input type="text" th:field="*{guestEmail}" class="form-control"> </td>
+        <td>    <input th:field="*{subject}" type="text" class="form-control" ></td>
+        <td>    <input th:field="*{body}" type="text" class="form-control"></td>
+        <td>    <button class="btn btn-primary" type="submit">Send link</button></td>
       </tr>
     </table>
     <input name="guestProjectCode" type="hidden" value="1808" required><br>
   </form>
-
-  <!--
-  <h3 class="mb-2">All Items</h3>
-  <section class="container">
-   <ol>
-      <li th:each="guest: ${guestList}">
-        <span th:text="${todo.getToBeDone()}"></span>
-        <span th:text="${todo.getTimeLimit()}"></span>
-        <span th:text="${todo.getStatus()}"></span>
-        <a class="btn btn-secondary" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/' + todo.getId()}">Update</a>
-        <a class="btn btn-success" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/status/' + todo.getId() + '/COMPLETED'}">Complete</a>
-        <a class="btn btn-warning" th:if="${!todo.getStatus().toString().equals('INPROGRESS')}" th:href="${'/update-todo/status/' + todo.getId() + '/INPROGRESS'}">In Progress</a>
-        <a class="btn btn-danger" th:href="${'/delete-todo/' + todo.getId()}">Delete</a>
-      </li>
-    </ol>
-  </section>*/
-</main>-->
 </body>
 </html>
