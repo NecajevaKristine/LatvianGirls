@@ -1,5 +1,6 @@
 package com.latviangirls.eventGuests;
 
+import com.latviangirls.invitationConfirmation.ConfirmParticipation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="guests")
+
 public class Guest {
 
     @Id
@@ -22,28 +24,16 @@ public class Guest {
     @Column(name="nickname")
     private String guestNickName;
     private String guestPhoneNumber;
-
-    // private Enum guestRel;
-    // private Long guestCount;
-     //private Long guestAdult;
-    // private Long guestChild;
-
-    private String guestEmail;
-    private Long guestCount;
+    @Column( name = "email",
+            nullable = false,
+            unique = true)
+    private String guestEmail ;
+    private String guestCount;
     @Column(name="inv_accept")
-    private String guestInvitationAcceptance;
-    private Timestamp guestResponseDate;
-    private Timestamp invitationSent;
-    @Column(name="inv_accept_date")
-    private String guestInvitationDate;
-
+    @Enumerated(EnumType.STRING)
+    private ConfirmParticipation guestInvitationAcceptance;
     private String guestProjectCode;
     private String guestComment;
-    @Column(name="guest_create_date")
-    private Timestamp createdAt;
-    @Column(name="info_update_date")
-    private Timestamp updatedAt;
-
 
 }
 

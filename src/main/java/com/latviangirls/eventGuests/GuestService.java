@@ -1,17 +1,17 @@
 package com.latviangirls.eventGuests;
 
+
+import java.util.List;
+
+
 public interface GuestService {
-    default Iterable<Guest> getAllGuests(){
-        return null;
-    }
+
     void saveGuest(Guest guest);
 
-    void deleteById(Long guestId);
+    void deleteById(String guestId);
 
     Guest getGuestByGuestEmail(String guestEmail);
 
     Guest verifyGuest(String guestEmail, String guestProjectCode);
-
-
-    void createNewGuest(Guest guest);
+    List<Guest> findGuestById(String guestId);
 }

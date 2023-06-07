@@ -1,21 +1,18 @@
 package com.latviangirls;
-
-/*import com.latviangirls.eventGuests.Guest;
-import com.latviangirls.eventGuests.GuestRepository;*/
+import com.latviangirls.devProperties.ConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties(ConfigProperties.class)
 public class LatvianGirlsApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(LatvianGirlsApplication.class, args);
     }
 
-    //@Autowired
-    //private GuestRepository guestRepository; //iekļaujam šo objektu, jo izmantosim šajā lapā
-
-    }
-
+    @Autowired
+    private ConfigProperties configProperties;
+}

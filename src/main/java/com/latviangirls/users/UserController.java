@@ -17,15 +17,7 @@ public class UserController {
     public UserController (UserService userService){
         this.userService = userService;
     }
-    @GetMapping("/profile")
-    public String displayUserPage(){
-        return "userPage";
-    }
 
-   /* @GetMapping("/register")
-    public String showRegisterPage(){
-        return "guestRegister";
-    }*/
 
     @PostMapping("/register")
     public String handleUserRegistration (User user){
@@ -37,32 +29,16 @@ public class UserController {
             return "redirect:entry?status=REGISTER_FAILED&message=Registration failed";
         }
     }
-
-
-    /*@PostMapping("/profile")
-    public String handleUser(){
-        /*try {
-            User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
-            return "redirect:userPage";
-        /*}catch (Exception exception){
-            return "redirect:userPage";
-        }*/
-
-
-   /* @GetMapping("/login")
-    public String displayLoginPage(
-            @RequestParam(name="status", required=false) String status,
-            @RequestParam (name="message", required=false) String message,
-            Model model
-    ){
-        model.addAttribute ("status", status);
-        model.addAttribute ("message", message);
-        return "login";
-    }*/
     @PostMapping("/login")
-    public String handleLogin(LoginRequest loginRequest){
+    public String handleLogin(LoginRequest loginRequest, HttpServletResponse response){
         try {
             User loggedInUser = this.userService.verifyUser(loginRequest.nickName, loginRequest.password);
+            if (loggedInUser == null) throw new RuntimeException("User not found");
+
+            Cookie cookie = new Cookie("loggedInUserId", loggedInUser.getId().toString());
+            cookie.setMaxAge(60*60*60*24);
+            response.addCookie(cookie);
+
             return "redirect:profile";
         }catch (Exception exception){
             return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
@@ -70,7 +46,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/userPage")
+    @GetMapping("/entry")
+    public String displayMainPageAfterRegister(){
+        return "entry";
+    }
+
+    @GetMapping("/logout")
+
     public String logout(
             @CookieValue(value = "loggedInUserId", defaultValue = "") String userId,
             HttpServletResponse response
@@ -87,8 +69,3 @@ public class UserController {
     }
 
 }
-
-
-
-
-

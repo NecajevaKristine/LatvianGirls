@@ -3,7 +3,6 @@
 <head>
     <title>Profile</title>
     <title>UserPage</title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,17 +10,17 @@
     <style>
         body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
         body {font-size:16px;}
-       .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+        .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
         .w3-half img:hover{opacity:1}
     </style>
 </head>
 <body>
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-purple w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-    <div class="w3-container">
+    <nav class="w3-sidebar w3-purple w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+         <div class="w3-container">
         <h3 class="w3-padding-64"><b>EVENT<br>ORGANIZER</b></h3>
-    </div>
+        </div>
     <div class="w3-bar-block">
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
         <a href="#guests" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Guests</a>
@@ -29,180 +28,123 @@
         <a href="#invitationPage" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">See invitation page</a>
         <br>
         <br>
-        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
-
+        <a href="#logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log Out</a>
     </div>
-</nav>
-
-    <!-- !PAGE CONTENT! -->
-<div class="w3-container" id="beginning" style="margin-top:25px"></div>
-<div class="w3-Main" id="beginning" style="margin-left:340px;margin-right:40px">
-       <h1 class="w3-jumbo-50px"><b>Home</b></h1>
-       <h1 class="w3-xlarge w3-text-purple"><b>Beginning.</b></h1>
-       <hr style="width:50px;border:5px solid purple" class="w3-round">
-</div>
-
-    <!-- !PAGE CONTENT! -->
-<div class="w3-container" id="guests" style="margin-top:75px"></div>
-<div class="w3-main" id="guests" style="margin-left:340px;margin-right:40px">
+    </nav>
+<!-- !PAGE CONTENT! -->
+    <div class="w3-container" id="beginning" style="margin-top:25px"></div>
+    <div class="w3-Main" id="beginning" style="margin-left:340px;margin-right:40px">
+        <h1 class="w3-jumbo-50px"><b>Home</b></h1>
+         <h1 class="w3-xlarge w3-text-purple"><b>Beginning.</b></h1>
+        <hr style="width:50px;border:5px solid purple" class="w3-round">
+    </div>
+<!-- !PAGE CONTENT! -->
+    <div class="w3-container" id="guests" style="margin-top:75px"></div>
+    <div class="w3-main" id="guests" style="margin-left:340px;margin-right:40px">
         <h1 class="w3-jumbo-50px"><b>Guest managing</b></h1>
         <h1 class="w3-xlarge w3-text-purple"><b>Guests.</b></h1>
         <hr style="width:50px;border:5px solid purple" class="w3-round">
-    <!-- Services -->
-        <div class="w3-container" id="invitedGuests" style="margin-top:30px">
-            <main class="margin-top">
-                <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-                <form method="post" action="/guestRegister">
-                    <div>
-                        <label>Enter guest</label>
-                        <input name="guestNickName" type="text" required>
-                    </div>
-                    <div>
-                        <label>Guest`s phone number</label>
-                        <input name="guestPhoneNumber" minlength="8" type="text" required>
-                    </div>
-                    <div>
-                        <label>Relationships</label>
-                        <input name="guestRel" type="text" required>
-                    </div>
-                    <div>
-                        <label>Guest`s email</label>
-                        <input name="guestEmail" type="email" required>
-                    </div>
-                    <div>
-                        <label>Number of guests</label>
-                        <input name="guestCount" type="number" required>
-                    </div>
-                    <div>
-                        <label>Guest-Adult </label>
-                        <input name="guestAdult" type="number" required>
-                    </div>
-                    <div>
-                        <label>Guest-Children </label>
-                        <input name="guestChild" type="number" required>
-                        <input name="guestProjectCode" type="hidden" value="1808" required><br>
-                        <button class="button green-theme" type="submit">Register</button>
-                        <button class="button red-theme" type="reset">Clear data`s</button>
-                    </div>
-                </form>
-            </main>
-        </div>
-
-            <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-            <table class="table table-sm" w3-border style="width: 85%" >
-             <div class="row" >
-                <div class="col-sm-3">
-                    <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
-                </div>
+         <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
+         <div class="row" >
+             <div class="col-lg-3">
+            <a th:href="@{/guest/new}" class="btn btn-primary btn-sm mb-3">Add new guest</a>
              </div>
-            </table>
-
-  <!--  <div th:if="${status!=null}">
-        <div th:if="${status == 'REGISTRATION_SUCCESS'}">
-            <span class="green-theme"> Account created! Please login to continue!</span>
         </div>
-        <div th:if="${status == 'LOGIN_FAILED'}">
-            <span class="red-theme" th:text="${message}"</span>
-        </div>
-    </div> -->
-
-      <table class="table table-sm" style="width: 85%">
-          <caption>List of provided guests!</caption>
-          <thead class="table-purple">
-          <tr>
+    </div>
+    <table class="table table-sm" style="margin-left:340px;margin-right:40px">
+        <caption>List of provided guests!</caption>
+         <thead class="table-purple">
+         <tr>
               <th>Nickname</th>
               <th>Phone number</th>
               <th>Email</th>
-              <th>Invitation acceptance</th>
-              <th>Comment from guest</th>
-              <th>Check full info</th>
-              <th>Edit info</th>
-              <th>Delete guest</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
-            <td th:text="${guest.guestNickName}"></td>
-            <td th:text="${guest.guestPhoneNumber}"></td>
-            <td th:text="${guest.guestEmail}"></td>
-            <td th:text="${guest.guestInvitationAcceptance}"></td>
-            <td th:text="${guest.guestComment}"></td>
-            <td ></td>
-            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.guestEmail})}" class="btn btn-primary">Edit info</a></td>
-            <td ><a th:href="@{/deleteGuest/{guestId}(guestId=${guest.guestId})}" class="btn btn-danger">Delete</a></td>
-        </tr>
+              <th>Acceptance</th>
+              <th>Persons</th>
+              <th>Comment</th>
+             <th>Send link</th>
+             <th>Edit info</th>
+             <th>Delete guest</th>
+         </tr>
+         </thead>
+        <tbody>
+            <tr th:each="guest: ${guestList}"> <!--each ir tieši Thymeleaf atribūts, kas prasa no guest tabulas pieprasīt katru viesi atsevišķi -->
+            <td th:text="${guest.getGuestNickName()}"></td>
+            <td th:text="${guest.getGuestPhoneNumber()}"></td>
+            <td th:text="${guest.getGuestEmail()}"></td>
+            <td th:text="${guest.getGuestInvitationAcceptance()}"></td>
+            <td th:text="${guest.getGuestCount()}"></td>
+            <td th:text="${guest.getGuestComment()}"></td>
+            <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
+            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>
+            <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.getGuestId()})}" class="btn btn-danger">Delete</a></td>
+            </tr>
         </tbody>
     </table>
-</div>
-
-<!-- To-DO LIST -->
-<div class="w3-container" id="todo" style="margin-top:75px"></div>
-<div class="w3-Main" id="todo" style="margin-left:340px;margin-right:40px">
-    <h1 class="w3-jumbo-50px"><b>Todo List</b></h1>
-    <h1 class="w3-xlarge w3-text-purple"><b>What to do.</b></h1>
-    <hr style="width:50px;border:5px solid purple" class="w3-round">
-    <h3 class="margin-top"> Let`s put data`s in the table</h3>
-    <section th:replace="~{fragments/todo :: todoForm}"></section>
-</div>
-
+    <div class="w3-container" id="todo" style="margin-top:75px"></div>
+    <div class="w3-Main" id="todo" style="margin-left:340px;margin-right:40px">
+        <h1 class="w3-jumbo-50px"><b>Todo List</b></h1>
+        <h1 class="w3-xlarge w3-text-purple"><b>What to do.</b></h1>
+        <hr style="width:50px;border:5px solid purple" class="w3-round">
+        <section th:replace="~{fragments/todo::todoForm}"></section>
+        <h3 class="margin-top"> Let`s put data`s in the table</h3>
     <!-- Services -->
-<div class="w3-container" id="invitationPage" style="margin-top:75px"></div>
-<div class="w3-Main" id="invitationPage" style="margin-left:340px;margin-right:40px">
-    <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
-    <!-- ...................... -->
-    <div class="w3-container" id="designers" style="margin-top:20px">
-        <h1 class="w3-xlarge w3-text-purple"><b>Invitation.</b></h1>
-        <hr style="width:50px;border:5px solid purple" class="w3-round">
-        <p>The best thing in the world.</p>
-        <p><b>Our revelers</b>:</p>
+        <div class="w3-container" id="invitationPage" style="margin-top:75px">
+         </div>
     </div>
+    <div class="w3-Main" id="invitationPage" style="margin-left:340px;margin-right:40px">
+        <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
+    <!-- Contact -->
+        <div class="w3-container" id="designers" style="margin-top:20px">
+            <h1 class="w3-xlarge w3-text-purple"><b>Invitation.</b></h1>
+             <hr style="width:50px;border:5px solid purple" class="w3-round">
+            <p>The best thing in the world.</p>
+            <p><b>Our revelers</b>:</p>
+        </div>
     <!-- revelers -->
-    <div class="w3-row-padding w3-grayscale">
-        <div class="w3-col m4 w3-margin-bottom">
-            <div class="w3-light-grey">
-                <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-                <div class="w3-container">
-                    <h3>John Doe</h3>
-                    <p class="w3-opacity">groom</p>
-                    <p>.........................</p>
+        <div class="w3-row-padding w3-grayscale">
+            <div class="w3-col m4 w3-margin-bottom">
+                <div class="w3-light-grey">
+                        <img src="/w3images/team2.jpg" alt="/Matīss" style="width:100%">
+                    <div class="w3-container">
+                        <h3>Matīss</h3>
+                        <p class="w3-opacity">groom</p>
+                        <p>.........................</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="w3-col m4 w3-margin-bottom">
             <div class="w3-light-grey">
-                <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+                    <img src="/w3images/team1.jpg" alt="/Rita" style="width:100%">
                 <div class="w3-container">
-                    <h3>Jane Doe</h3>
-                    <p class="w3-opacity">the bride</p>
-                    <p>....................................</p>
+                 <h3>Rita</h3>
+                 <p class="w3-opacity">the bride</p>
+                <p>....................................</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    <!-- logout -->
-<div class="w3-container" id="logout" style="margin-top:75px"></div>
-<div class="w3-Main" id="logout" style="margin-left:340px;margin-right:40px">
-    <h1 class="w3-jumbo-50px"><b>Logout</b></h1>
-        <hr style="width:50px;border:5px solid purple" class="w3-round">
-        <p> See you next time!</p>
-        <form action="/entry" target="_blank">
-           <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
-        </form>
-</div>
 
+<!-- logout -->
+    <div class="w3-container" id="logout" style="margin-top:75px"></div>
+    <div class="w3-Main" id="logout" style="margin-left:340px;margin-right:40px">
+        <h1 class="w3-jumbo-50px"><b>Logout</b></h1>
+        <hr style="width:50px;border:5px solid purple" class="w3-round">
+         <p> See you next time!</p>
+        <form action="/entry" target="_blank">
+            <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
+        </form>
+    </div>
 <script>
     // Script to open and close sidebar
     function w3_open() {
         document.getElementById("mySidebar").style.display = "block";
         document.getElementById("myOverlay").style.display = "block";
     }
-
     function w3_close() {
         document.getElementById("mySidebar").style.display = "none";
         document.getElementById("myOverlay").style.display = "none";
     }
-
     // Modal Image Gallery
     function onClick(element) {
         document.getElementById("img01").src = element.src;
@@ -211,6 +153,5 @@
         captionText.innerHTML = element.alt;
     }
 </script>
-
 </body>
 </html>
