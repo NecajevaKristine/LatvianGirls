@@ -6,10 +6,13 @@ import java.util.List;
 
 @Service
 public class GuestServiceImpl {
-
+    private GuestRepository guestRepository;
 
     @Autowired
-    private GuestRepository guestRepository;
+    private GuestServiceImpl(GuestRepository guestRepository){
+        this.guestRepository = guestRepository;
+    }
+
 
     public List<Guest> getAllGuests() { //metode, kas iedos visu viesu listi
         return guestRepository.findAll();
@@ -29,7 +32,6 @@ public class GuestServiceImpl {
 
     public Guest verifyGuest(String guestEmail, String guestProjectCode) {
         Guest user = this.guestRepository.findGuestByGuestEmailAndGuestProjectCode(guestEmail, guestProjectCode);
-        System.out.println();
         return user;
     }
 
@@ -41,4 +43,11 @@ public class GuestServiceImpl {
     }
 
 
+    public void updateGuest(Guest guest) {
+        this.guestRepository.save(guest);
+    }
+
+    public Guest getGuestById(Long guestId) {
+        return this.guestRepository.findGuestByGuestId(guestId);
+    }
 }

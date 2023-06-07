@@ -20,4 +20,6 @@ public interface GuestRepository extends JpaRepository<Guest, Long> {
       Guest findGuestByGuestEmailAndGuestProjectCode (String guestEmail, String guestProjectCode);
       @Override
       List<Guest> findAll();
+
+      Guest findGuestByGuestId(Long guestId);
 }

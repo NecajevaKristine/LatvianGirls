@@ -2,12 +2,10 @@ package com.latviangirls.eventGuests;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class GuestController {
@@ -15,7 +13,6 @@ public class GuestController {
 
     @Autowired
     public GuestController(GuestServiceImpl guestServiceImpl) {
-        super();
         this.guestServiceImpl = guestServiceImpl;
     }
 
@@ -24,21 +21,21 @@ public class GuestController {
     public String viewGuestList(@CookieValue(value = "loggedInUserId") String userId, Model model) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-            model.addAttribute("guestList", this.guestServiceImpl.getAllGuests()); //izsauc no guestService metodi, kas iedod visu listi ar viesiem
+            model.addAttribute("guestList", this.guestServiceImpl.getAllGuests());
             return "userPage";
         } catch (Exception e) {
-            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+            return "redirect:/profile?status=TABLE_NOT_FOUND&message=" + e.getMessage();
         }
     }
 
     @GetMapping("/guest/new")
-    public String openGuestRegisterForm(@CookieValue(value = "loggedInUserId") String userId,Model model) {
+    public String openGuestRegisterForm(@CookieValue(value = "loggedInUserId") String userId, Model model) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-        Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
-        model.addAttribute("guest", guest);
-        return "guestRegister";
-    } catch (Exception e) {
+            Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
+            model.addAttribute("guest", guest);
+            return "guestRegister";
+        } catch (Exception e) {
             return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
@@ -48,9 +45,9 @@ public class GuestController {
         //save guest to data base
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-        guestServiceImpl.saveGuest(guest);
-        return "redirect:/profile";
-    }catch (Exception e) {
+            guestServiceImpl.saveGuest(guest);
+            return "redirect:/profile";
+        } catch (Exception e) {
             return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
@@ -60,10 +57,10 @@ public class GuestController {
     public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId, @PathVariable("guestEmail") String guestEmail, Model model) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-        Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
-        model.addAttribute("guest", guest);
-        return "update_guestInfo";
-    } catch (Exception e) {
+            Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
+            model.addAttribute("guest", guest);
+            return "update_guestInfo";
+        } catch (Exception e) {
             return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
@@ -74,18 +71,9 @@ public class GuestController {
         return "redirect:/profile";
     }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Beidzās sadaļa, kas atbild par viesu reģistru
-
-    /*    @GetMapping("/WelcomeToSeeInvitation")
-        public String redirectToRegistrationPage() {
-                  return "redirect:/entry";
-        }*/
-
 
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
-
-
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "message", required = false) String message,
             Model model //transfers info to html
@@ -96,15 +84,20 @@ public class GuestController {
     }
 
     @PostMapping("/WelcomeToSeeInvitation")
-    public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
+    public String letGuestSeeInvitation(InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response, Model model) {
         try {
             Guest loggedInGuest = this.guestServiceImpl.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
             if (loggedInGuest == null)
                 throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
 
             Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
+            Cookie cookie1 = new Cookie("loggedInGuestId", loggedInGuest.getGuestId().toString());
             cookie.setMaxAge(3000);
+            cookie1.setMaxAge(3000);
             response.addCookie(cookie);
+            response.addCookie(cookie1);
+
+            model.addAttribute("guestId", loggedInGuest.getGuestId());
 
             return "redirect:WelcomeToSeeInvitation";
 
@@ -112,76 +105,45 @@ public class GuestController {
             return "redirect:entry?status=LOGIN_FAILED&message=" + exception.getMessage();
         }
     }
-}
 
 
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
-
-    @GetMapping("/guestRegister")
-    public String showRegisterPage() {
-        return "guestRegister";
-    }*/
-
-/*
-    @GetMapping("/guest/confirmation/{guestId}")
-    public String openGuestConfForm(@PathVariable("guestEmail") {
-        Guest guest = new Guest(); //uztaisām objektu, lai no formas saglabātu viesa datus
+    @GetMapping("/guest/confirmation")
+    public String openGuestConfForm(@CookieValue(value = "loggedInGuestEmail") String guestEmail,
+                                    @CookieValue(value = "loggedInGuestId") Long guestId, Model model
+    ) {
+        Guest guest = this.guestServiceImpl.getGuestById(guestId);
+        System.out.println(guest);
         model.addAttribute("guest", guest);
+        model.addAttribute("guestId", guestId);
+        model.addAttribute("guestEmail", guestEmail);
         return "confirmationForm";
-    }*/
-/*
-    @PostMapping("/guestAnswer/{guestEmail}")
-    public String processGuestConfirmation(@PathVariable("guestEmail") String guestEmail, Model model, InvitationOpeningRequest invitationOpeningRequest, HttpServletResponse response) {
-        model.addAttribute("guest", guestEmail);
-        try {
-            Guest loggedInGuest = this.guestService.verifyGuest(invitationOpeningRequest.guestEmail, invitationOpeningRequest.guestProjectCode);
-            if(loggedInGuest==null) throw new RuntimeException("There is not found info about You! Please, contact with invitation sender!");
-
-            Cookie cookie = new Cookie("loggedInGuestEmail", loggedInGuest.getGuestEmail().toString());
-            cookie.setMaxAge(3000);
-            response.addCookie(cookie);
-            return "redirect:WelcomeToSeeInvitation";
-
-        }catch (Exception exception){
-            return "redirect:entry?status=LOGIN_FAILED&message="+ exception.getMessage();
-        }
-
-      }*/
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    /*
-    @GetMapping("/WelcomeToSeeInvitation")
-    public String displayInvWeb(@CookieValue(value = "loggedInGuestId", defaultValue = "") String guestId, Model model) {
-
-        try {
-            if (guestId.isEmpty()) throw new RuntimeException("You are not logged in, please do it!");
-            // extract guest information from guest service and send it to html
-            model.addAttribute("guest", this.guestService.findGuestById(guestId));
-            model.addAttribute("guestList", this.guestService.findAll());
-            return "entry";
-        } catch (Exception exception) {
-            return "redirect:login?status=DISPLAY_ERROR&message=" + exception.getMessage();
-        }
     }
-    /*
-    @PostMapping("send-message")
-    public String sendMessage(@CookieValue(value = "loggedInUserId", defaultValue = "") String userId, ChatRequest chatRequest){
-
-        try {
-            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
-            Chat chat = new Chat();
-            chat.setMessage(chatRequest.getMessage());
-            chat.setSender(this.userService.findUserById(Long.parseLong(userId)));
-            this.chatRepository.save(chat);
-            // extract user information from user service and send it to html
-            return "redirect:chat-room";
-        }catch (Exception exception){
-            return "redirect:login?status=CHAT_ROOM_ERROR&message=" + exception.getMessage();
-        }
-    }*/
-//~~~~~~~~~~~~~~~~~~~~~
 
 
+    @PostMapping("/guest/guestAnswer")
+    public String fillingConfirmationForm(@CookieValue(value = "loggedInGuestEmail") String guestEmail,
+                                          @CookieValue(value = "loggedInGuestId") Long guestId,
+                                          Model model,
+                                          Guest updatedGuest,
+                                          RedirectAttributes redirectAttributes) {
+        Guest existingGuest = this.guestServiceImpl.getGuestById(guestId);
+        existingGuest.setGuestInvitationAcceptance(updatedGuest.getGuestInvitationAcceptance());
+        existingGuest.setGuestCount(updatedGuest.getGuestCount());
+        existingGuest.setGuestComment(updatedGuest.getGuestComment());
 
-/*https://www.youtube.com/watch?v=QwQuro7ekvc&t=2246s*/
+        this.guestServiceImpl.updateGuest(existingGuest);
+
+        redirectAttributes.addFlashAttribute("message", "Your answer has been submitted. Thank you!");
+
+        return "redirect:/entry/";
+    }
+
+    @GetMapping("/entry/")
+    public String displayEntryPage(Model model) {
+        // Add any necessary model attributes
+        model.addAttribute("message", "Your answer has been submitted. Thank you!");
+
+        return "entry";
+    }
+
+}

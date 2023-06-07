@@ -54,6 +54,11 @@
                 </div>
             </div>
     </div>
+<div th:if="${param.status}">
+    <div class="alert alert-danger">
+        <p>Error: <span th:text="${param.message}"></span></p>
+    </div>
+</div>
        <table class="table table-sm" style="margin-left:340px;margin-right:40px">
           <caption>List of provided guests!</caption>
           <thead class="table-purple">

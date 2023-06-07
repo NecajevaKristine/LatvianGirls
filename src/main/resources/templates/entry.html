@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta  name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EventOrganizer</title>
   <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    .message-container {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-
+<div class="message-container">
+  <div class="alert alert-success">
+    <p th:text="${message}"></p>
+  </div>
 </div>
-
 <div class="tabs">
   <input type="radio" class="tabs__first" name="tab-test" id="login" checked>
-  <label for="login" class="tabs__label" ><u>Login</u></label>
+  <label for="login" class="tabs__label"><u>Login</u></label>
   <div class="tabs__content">
     <section th:replace="~{fragments/login :: login}"></section>
   </div>
@@ -21,13 +28,11 @@
   <div class="tabs__content">
     <section th:replace="~{fragments/register :: register}"></section>
   </div>
-
   <input type="radio" class="tabs__first" name="tab-test" id="invitation">
   <label for="invitation" class="tabs__label"><u>See invitation</u></label>
   <div class="tabs__content">
     <section th:replace="~{fragments/inv_login :: invitationLogin}"></section>
   </div>
 </div>
-
 </body>
 </html>
