@@ -46,11 +46,13 @@
         <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
         <!--<div class="row" ></div>-->
            <!-- <div class="col-lg-3"></div>-->
-        <a th:href="@{/guest/new}"class="btn btn-primary panel w3-purple">Add new guest</a>
+        <a th:href="@{/guest/new}"class="btn btn-primary w3-large panel  w3-purple" style="border-radius: 10px 50px" >Add new guest</a>
     </div>
+<br>
+
 <div class="w3-container">
-    <table class="table w3-table-all-small"style="margin-left:280px;margin-right:40px">
-        <caption>List of provided guests!</caption>
+    <table class="table w3-table-all-small" border="1px solid" style="margin-left:280px;margin-right:40px">
+
          <thead class="w3-medium">
          <tr class="w3-grey">
               <th>Nickname</th>
@@ -129,7 +131,7 @@
         <hr style="width:50px;border:5px solid purple" class="w3-round">
         <p> See you next time!</p>
         <form action="/entry" target="_blank">
-        <button type="logout" class="w3-button w3-block w3-padding-large w3-purple w3-margin-bottom">Logout</button>
+        <button type="logout" class="w3-button  w3-block w3-padding-large w3-purple w3-margin-bottom" style="border-radius: 15px 50px">Logout</button>
         </form>
     </div>
   </div>
