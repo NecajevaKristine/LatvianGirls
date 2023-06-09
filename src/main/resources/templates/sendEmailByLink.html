@@ -9,12 +9,12 @@
 <body>
 
 <main class="container">
-  <form method="post" th:action="@{/guest/createEmail}" >
+  <form method="post" th:action="@{/guest/sendEmail/{guestEmail}}">
 
 
       <div>
         <label> Email to send invitation:  </label>
-        <input type="text" name="guestEmail" class="form-control" th:placeholder="${guest.getGuestEmail()}" required readonly/>
+        <input type="text" name="guestEmail" class="form-control" th:value="${guest.getGuestEmail()}" required readonly/>
       </div>
 
       <div>

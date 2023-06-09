@@ -12,6 +12,11 @@
         body {font-size:16px;}
         .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
         .w3-half img:hover{opacity:1}
+        a:active {
+            color: purple;
+            background-color: transparent;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -24,18 +29,43 @@
     <div class="w3-bar-block">
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
         <a href="#guests" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Guests</a>
-        <a href="#invitationPage" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">See invitation page</a>
+        <a href="#invitationPage" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Invitation page</a>
         <br>
         <br>
-        <a href="#logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log Out</a>
+        <form action="/entry" target="_blank">
+            <button type="logout" href="#logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log Out</button>
+        </form>
     </div>
 </nav>
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-container" id="beginning" style="margin-top:25px"></div>
 <div class="w3-Main" id="beginning" style="margin-left:300px;margin-right:40px">
     <h1 class="w3-jumbo-50px"><b>Home</b></h1>
     <h1 class="w3-xlarge w3-text-purple"><b>Beginning.</b></h1>
     <hr style="width:50px;border:5px solid purple" class="w3-round">
+    <h3 class="margin-top"><u>What is Event organizer?</u></h3>
+    <h4 >Right now it's just our final project!   </h4>
+    <br>
+    <h4 >BUT, this tool in future could be developed as a helper for: </h4>
+    <ul style="list-style-type:circle">
+        <li><u>Guest managing &#128111; </u></li>
+              <ul>~ See acceptances for event participants</ul>
+              <ul>~ Communicate with guests</ul>
+              <ul>~ See guest needs</ul>
+        <br>
+        <li><u>Todo list managing &#128203;</u></li>
+              <ul>~ Manage "todo" list</ul>
+              <ul>~ See deadlines for todo</ul>
+              <ul>~ See statuses of work to be done </ul>
+        <br>
+        <li><u>Budget &#128176;</u></li>
+              <ul>~ Calculations linked to guest acceptances</ul>
+              <ul>~ Calculations linked to items in the to-do list</ul>
+              <ul>~ Independent budget positions </ul>
+    </ul>
+
+
 </div>
 <!-- !PAGE CONTENT! -->
 <div class="w3-container" id="guests" style="margin-top:75px"></div>
@@ -44,8 +74,7 @@
     <h1 class="w3-xlarge w3-text-purple"><b>Guests.</b></h1>
     <hr style="width:50px;border:5px solid purple" class="w3-round">
     <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-    <!--<div class="row" ></div>-->
-    <!-- <div class="col-lg-3"></div>-->
+
     <a th:href="@{/guest/new}"class="btn btn-primary w3-large panel  w3-purple" style="border-radius: 10px 50px" >Add new guest</a>
 </div>
 <br>
@@ -54,7 +83,7 @@
     <table class="table w3-table-all-small" border="1px solid" style="margin-left:280px;margin-right:40px">
 
         <thead class="w3-medium">
-        <tr class="w3-grey">
+        <tr class="w3-purple">
             <th>Nickname</th>
             <th>Phone number</th>
             <th>Email</th>
@@ -74,86 +103,30 @@
             <td th:text="${guest.getGuestInvitationAcceptance()}"></td>
             <td th:text="${guest.getGuestCount()}"></td>
             <td th:text="${guest.getGuestComment()}"></td>
-            <td> <a th:href="@{/showEmailForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
-            <td> <a th:href="@{/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>
+            <td> <a th:href="@{/guest/createEmail/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Send link</a></td>
+            <td> <a th:href="@{/guest/showUpdateForm/{guestEmail}(guestEmail=${guest.getGuestEmail()})}" class="btn btn-primary">Edit info</a></td>
             <td> <a th:href="@{/deleteGuest/{guestId}(guestId=${guest.getGuestId()})}" class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-
+<!-- !PAGE CONTENT! -->
 <div class="w3-container" id="invitationPage" style="margin-top:75px"></div>
 <div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
-    <h1 class="w3-jumbo-50px"><b>This is invitation page</b></h1>
-    <!-- Contact -->
-    <div class="w3-container" id="designers" style="margin-top:20px">
+    <h1 class="w3-jumbo-50px"><b>Invitation page</b></h1>
+    <div class="w3-container" id="invitation" style="margin-top:20px">
         <h1 class="w3-xlarge w3-text-purple"><b>Invitation.</b></h1>
         <hr style="width:50px;border:5px solid purple" class="w3-round">
-        <p>The best thing in the world.</p>
-        <p><b>Our revelers</b>:</p>
+        <br>
+        <h2>Every guest has his own keys to see invitation: </h2>
+        <ul>
+            <li>~Sent link in email</li>
+            <li>~Project code as password (sent in email)</li>
+            <li>~His own email address</li>
+        </ul>
+        <h2>See project invitation page </h2>
+        <a href="/WelcomeToSeeInvitation" target="_blank" >Find me here</a>
     </div>
 </div>
-<!-- revelers -->
-<div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
-    <div class="w3-row-padding w3-grayscale">
-        <div class="w3-col m4 w3-margin-bottom">
-            <div class="w3-light-grey">
-                <img src="/w3images/team2.jpg" alt="/Matīss" style="width:100%">
-                <div class="w3-container">
-                    <h3>Matīss</h3>
-                    <p class="w3-opacity">groom</p>
-                    <p>.........................</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="w3-Main" id="invitationPage" style="margin-left:300px;margin-right:40px">
-    <div class="w3-row-padding w3-grayscale">
-        <div class="w3-col m4 w3-margin-bottom">
-            <div class="w3-light-grey">
-                <img src="/w3images/team1.jpg" alt="/Rita" style="width:100%">
-                <div class="w3-container">
-                    <h3>Rita</h3>
-                    <p class="w3-opacity">the bride</p>
-                    <p>....................................</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- logout -->
-
-<div class="w3-container" id="logout" style="margin-top:75px">
-    <div class="w3-Main" id="logout" style="margin-left:300px;margin-right:40px">
-        <h1 class="w3-jumbo-50px"><b>Logout</b></h1>
-        <hr style="width:50px;border:5px solid purple" class="w3-round">
-        <p> See you next time!</p>
-        <form action="/entry" target="_blank">
-            <button type="logout" class="w3-button  w3-block w3-padding-large w3-purple w3-margin-bottom" style="border-radius: 15px 50px">Logout</button>
-        </form>
-    </div>
-</div>
-</div>
-
-<script>
-    // Script to open and close sidebar
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-        document.getElementById("myOverlay").style.display = "block";
-    }
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-        document.getElementById("myOverlay").style.display = "none";
-    }
-    // Modal Image Gallery
-    function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
-    }
-</script>
 </body>
 </html>

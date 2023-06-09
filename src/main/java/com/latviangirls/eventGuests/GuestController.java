@@ -61,8 +61,7 @@ public class GuestController {
         }
     }
 
-
-    @GetMapping("/showUpdateForm/{guestEmail}")
+    @GetMapping("/guest/showUpdateForm/{guestEmail}")
     public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId, @PathVariable("guestEmail") String guestEmail, Model model) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
@@ -167,9 +166,9 @@ public class GuestController {
         }
     }
 
-        @PostMapping("/createEmail/{guestEmail}")
-        public String sendInvitationByLink (@PathVariable("guestEmail") String guestEmail, HttpServletRequest request) {
-          //  String guestEmail = request.getParameter("guestEmail");
+        @PostMapping("/guest/sendEmail/{guestEmail}")
+        public String sendInvitationByLink (HttpServletRequest request) {
+            String guestEmail = request.getParameter("guestEmail");
             String subject = request.getParameter("subject");
             String body = request.getParameter("body");
 
@@ -188,3 +187,4 @@ public class GuestController {
         }
 }
    //https://www.youtube.com/watch?v=njPaIwdx4yw&t=2075s
+ //  @PathVariable("guestEmail") String guestEmail,
