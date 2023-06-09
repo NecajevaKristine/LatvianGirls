@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>This is email for guest</title>
@@ -9,22 +9,26 @@
 <body>
 
 <main class="container">
-  <form action="#" method="post" th:action="@{/createEmail}" th:object="${guest,sendSimpleEmail} >
-    <table style="width:80%">
-      <tr>
-        <td>Add Subject to Email</td>
-        <td>Email to send invitation</td>
-        <td>Add body of the email</td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>    <input type="text" th:field="*{guestEmail}" class="form-control"> </td>
-        <td>    <input th:field="*{subject}" type="text" class="form-control" ></td>
-        <td>    <input th:field="*{body}" type="text" class="form-control"></td>
-        <td>    <button class="btn btn-primary" type="submit">Send link</button></td>
-      </tr>
-    </table>
-    <input name="guestProjectCode" type="hidden" value="1808" required><br>
+  <form method="post" th:action="@{/guest/createEmail}" >
+
+
+      <div>
+        <label> Email to send invitation:  </label>
+        <input type="text" name="guestEmail" class="form-control" th:placeholder="${guest.getGuestEmail()}" required readonly/>
+      </div>
+
+      <div>
+        <label> Subject for invitation email: </label>
+        <input type="text" class="form-control" name="subject" value="Guess WHAT? &#128525;" required/>
+      </div>
+      <div>
+          <label> Body for invitation: </label>
+          <input type="text" class="form-control" name="body" value=" http://localhost:2023/WelcomeToSeeInvitation
+          <br> Your invitation code is `1808` ! You will have to use it to see invitation!" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="subject">Send </button>
+
   </form>
 </body>
 </html>

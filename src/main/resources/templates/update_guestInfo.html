@@ -4,29 +4,39 @@
   <meta charset="UTF-8">
   <title>Update guest info</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-</head>
-<body>
+  <!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Update guest info</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
 
-<main class="margin-top">
-  <h3 class="margin-top"> Let`s put guest data`s in the table</h3>
-  <form action="#" method="post" th:action="@{/createGuest}" th:object="${guest}">
-    <table style="width:80%">
-      <tr>
-        <td>Add Nickname</td>
-        <td>Add Email</td>
-        <td>Add phone number</td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>    <input type="text" th:field="*{guestNickName}" class="form-control"> </td>
-        <td>    <input th:field="*{guestEmail}" type="email" class="form-control" ></td>
-        <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control"></td>
-        <td>    <button class="btn btn-primary" type="submit">Update guest info</button></td>
-      </tr>
-    </table>
-    <input name="guestProjectCode" type="hidden" value="1808" required><br>
-  </form>
-</main>
-</body>
-</html>
+  <main class="margin-top">
+    <h3 class="margin-top-panel-small w3-purple" > Let`s update guest data`s in the table</h3>
+    <form action="#" method="post" th:action="@{/createGuest}" th:object="${guest}">
+      <div class="w3-container" >
+        <table class="table w3-table-all-small" border="1px solid" style="margin-left:5px;margin-right:40px">
+          <thead class="w3-medium">
+          <tr class="w3-grey">
+            <td>Add Nickname</td>
+            <td>Add Email</td>
+            <td>Add phone number</td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td>    <input type="text" th:field="*{guestNickName}" class="form-control"> </td>
+            <td>    <input th:field="*{guestEmail}" type="email" class="form-control" ></td>
+            <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control"></td>
+            <td>    <button class="btn btn-primary" type="submit">Update guest info</button></td>
+          </tr>
+        </table>
+        <input name="guestProjectCode" type="hidden" value="1808" required><br>
+      </div>
+    </form>
+  </main>
+  </body>
+  </html>

@@ -1,4 +1,4 @@
-package com.latviangirls.SendEmail;
+/*package com.latviangirls.SendEmail;
 
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,17 @@ public class EmailSendController {
 
     @Autowired
     private EmailSenderService senderService;
+
     public static void main(String[] args) {
         SpringApplication.run(EmailSendController.class, args);
     }
-    @EventListener(ApplicationReadyEvent.class)
-    public void triggerMail() throws MessagingException {
-        senderService.sendSimpleEmail("ritucis@inbox.lv",
-                "This is email subject",
-                "This is email body");
-    }
 
-}
+    @EventListener(ApplicationReadyEvent.class)
+
+    public void triggerMail() throws MessagingException {
+        senderService.sendSimpleEmail("guestEmail",
+                "subject",
+                "body");
+    }
+}*/
+
