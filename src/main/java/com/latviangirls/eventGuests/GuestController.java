@@ -62,21 +62,47 @@ public class GuestController {
     }
 
     @GetMapping("/guest/showUpdateForm/{guestEmail}")
-    public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId, @PathVariable("guestEmail") String guestEmail, Model model) {
+    public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId,
+                                    @PathVariable String guestEmail,
+                                    Model model) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+
             Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
             model.addAttribute("guest", guest);
+
             return "update_guestInfo";
         } catch (Exception e) {
             return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
 
-    @GetMapping("/deleteGuest/{guestId}")
+   @PostMapping("/guest/updateGuest")
+    public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId,
+                                    @RequestParam String guestEmail,
+                                    Model model,
+                                    Guest updatedGuest,
+                                    RedirectAttributes redirectAttributes) {
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            Guest newGuest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
+            newGuest.setGuestNickName(updatedGuest.getGuestNickName());
+            newGuest.setGuestEmail(updatedGuest.getGuestEmail());
+            newGuest.setGuestPhoneNumber((updatedGuest.getGuestPhoneNumber()));
+//not able to change @
+            this.guestServiceImpl.updateGuest(newGuest);
+
+    //        redirectAttributes.addFlashAttribute("message", "Guest info has been updated!");
+            return "redirect:/profile#guests";
+        } catch (Exception e) {
+            return "redirect:entry?status=UPDATING_FAILED&message=" + e.getMessage();
+        }
+    }
+
+    @GetMapping("/guest/deleteGuest/{guestId}")
     public String deleteByGuestId(@PathVariable("guestId") Long guestId) {
         this.guestServiceImpl.deleteById(guestId);
-        return "redirect:/profile";
+        return "redirect:/profile#guests";
     }
 
 
@@ -183,8 +209,6 @@ public class GuestController {
             message.setText(mailBody);
 
             mailSender.send(message);
-            return "redirect:/profile";
+            return "redirect:/profile#guests";
         }
 }
-   //https://www.youtube.com/watch?v=njPaIwdx4yw&t=2075s
- //  @PathVariable("guestEmail") String guestEmail,
