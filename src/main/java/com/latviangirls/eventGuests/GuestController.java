@@ -1,7 +1,10 @@
 package com.latviangirls.eventGuests;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -9,6 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class GuestController {
     private GuestServiceImpl guestServiceImpl;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    HttpServletRequest request;
     @Autowired
     public GuestController(GuestServiceImpl guestServiceImpl) {
         this.guestServiceImpl = guestServiceImpl;
@@ -37,7 +44,7 @@ public class GuestController {
     }
     @PostMapping("/createGuest")
     public String processGuestRegistration(@CookieValue(value = "loggedInUserId") String userId, @ModelAttribute("guest") Guest guest) {
-        //save guest to data base
+        //save guest to dataBase
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
             guestServiceImpl.saveGuest(guest);
@@ -121,4 +128,31 @@ public class GuestController {
         model.addAttribute("message", "Your answer has been submitted. Thank you!");
         return "entry";
     }
+    @GetMapping("/guest/createEmail/{guestEmail}")
+    public String showEmailForm(@CookieValue(value = "loggedInUserId") String userId, @PathVariable("guestEmail") String guestEmail, Model model) {
+        try {
+            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
+            model.addAttribute("guest", guest);
+            return "sendEmailByLink";
+        } catch (Exception e) {
+            return "redirect:entry?status=SENDING_FAILED&message=" + e.getMessage();
+        }
+    }
+    @PostMapping("/createEmail/{guestEmail}")
+    public String sendInvitationByLink (@PathVariable("guestEmail") String guestEmail, HttpServletRequest request) {
+        //  String guestEmail = request.getParameter("guestEmail");
+        String subject = request.getParameter("subject");
+        String body = request.getParameter("body");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("kaktina.rita@gmail.com");
+        message.setTo(guestEmail);
+        String mailSubject = subject;
+        String mailBody = body;
+        message.setSubject(mailSubject);
+        message.setText(mailBody);
+        mailSender.send(message);
+        return "redirect:/profile";
+    }
 }
+//https://www.youtube.com/watch?v=njPaIwdx4yw&t=2075s

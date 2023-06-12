@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>This is email for guest</title>
@@ -9,39 +9,26 @@
 <body>
 
 <main class="container">
-  <form action="#" method="post" th:action="@{/createEmail}" th:object="${guest}">
-    <table style="width:80%">
-      <tr>
-        <td>Add Nickname</td>
-        <td>Add Email</td>
-        <td>Add phone number</td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>    <input type="text" th:field="*{guestNickName}" class="form-control"> </td>
-        <td>    <input th:field="*{guestEmail}" type="email" class="form-control" ></td>
-        <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control"></td>
-        <td>    <button class="btn btn-primary" type="submit">Update guest info</button></td>
-      </tr>
-    </table>
-    <input name="guestProjectCode" type="hidden" value="1808" required><br>
-  </form>
+  <form method="post" th:action="@{/guest/createEmail}" >
 
-  <!--
-  <h3 class="mb-2">All Items</h3>
-  <section class="container">
-   <ol>
-      <li th:each="guest: ${guestList}">
-        <span th:text="${todo.getToBeDone()}"></span>
-        <span th:text="${todo.getTimeLimit()}"></span>
-        <span th:text="${todo.getStatus()}"></span>
-        <a class="btn btn-secondary" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/' + todo.getId()}">Update</a>
-        <a class="btn btn-success" th:if="${todo.getStatus().toString() != 'COMPLETED'}" th:href="${'/update-todo/status/' + todo.getId() + '/COMPLETED'}">Complete</a>
-        <a class="btn btn-warning" th:if="${!todo.getStatus().toString().equals('INPROGRESS')}" th:href="${'/update-todo/status/' + todo.getId() + '/INPROGRESS'}">In Progress</a>
-        <a class="btn btn-danger" th:href="${'/delete-todo/' + todo.getId()}">Delete</a>
-      </li>
-    </ol>
-  </section>*/
-</main>-->
+
+      <div>
+        <label> Email to send invitation:  </label>
+        <input type="text" name="guestEmail" class="form-control" th:placeholder="${guest.getGuestEmail()}" required readonly/>
+      </div>
+
+      <div>
+        <label> Subject for invitation email: </label>
+        <input type="text" class="form-control" name="subject" value="Guess WHAT? &#128525;" required/>
+      </div>
+      <div>
+          <label> Body for invitation: </label>
+          <input type="text" class="form-control" name="body" value=" http://localhost:2023/WelcomeToSeeInvitation
+          <br> Your invitation code is `1808` ! You will have to use it to see invitation!" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="subject">Send </button>
+
+  </form>
 </body>
 </html>
