@@ -9,28 +9,32 @@
   <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-<h1 CLASS="w3-jumbo-50px">WELCOME TO OUR EVENT ORGANIZER</h1>
-<br>
-</div>
 
-<div class="tabs">
-  <input type="radio" class="tabs__first" name="tab-test" id="login" checked>
-  <label for="login" class="tabs__label" ><u>Login</u></label>
-  <div class="tabs__content">
-    <section th:replace="~{fragments/login :: login}"></section>
-  </div>
-  <input type="radio" class="tabs__first" name="tab-test" id="register">
-  <label for="register" class="tabs__label"><u>Register</u></label>
-  <div class="tabs__content">
-    <section th:replace="~{fragments/register :: register}"></section>
+<section class="section">
+  <h1 CLASS="w3-jumbo-50px">WELCOME TO OUR EVENT ORGANIZER</h1>
+  <br>
+  <div class="message" th:if="${message}" th:text="${message}"></div>
+
+  <div class="tabs">
+    <input type="radio" class="tabs__first" name="tab-test" id="login" checked>
+    <label for="login" class="tabs__label" ><u>Login</u></label>
+    <div class="tabs__content">
+      <section th:replace="~{fragments/login :: login}"></section>
+    </div>
+    <input type="radio" class="tabs__first" name="tab-test" id="register">
+    <label for="register" class="tabs__label"><u>Register</u></label>
+    <div class="tabs__content">
+      <section th:replace="~{fragments/register :: register}"></section>
+    </div>
+
+    <input type="radio" class="tabs__first" name="tab-test" id="invitation">
+    <label for="invitation" class="tabs__label"><u>See invitation</u></label>
+    <div class="tabs__content">
+      <section th:replace="~{fragments/inv_login :: invitationLogin}"></section>
+    </div>
   </div>
 
-  <input type="radio" class="tabs__first" name="tab-test" id="invitation">
-  <label for="invitation" class="tabs__label"><u>See invitation</u></label>
-  <div class="tabs__content">
-    <section th:replace="~{fragments/inv_login :: invitationLogin}"></section>
-  </div>
-</div>
+</section>
 
 </body>
 </html>

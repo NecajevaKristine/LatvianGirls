@@ -62,29 +62,30 @@ public class GuestController {
     }
 
     @GetMapping("/guest/showUpdateForm/{guestEmail}")
-    public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId,
+    public String showFormForUpdate(@CookieValue(value = "loggedInUserId", required = false) String userId,
                                     @PathVariable String guestEmail,
                                     Model model) {
         try {
-            if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            if (userId == null || userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
 
             Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
             model.addAttribute("guest", guest);
 
             return "update_guestInfo";
         } catch (Exception e) {
-            return "redirect:entry?status=LOGIN_FAILED&message=" + e.getMessage();
+            return "redirect:/entry?status=LOGIN_FAILED&message=" + e.getMessage();
         }
     }
 
-   @PostMapping("/guest/updateGuest")
+   @PostMapping("/guest/updateGuest/{guestEmail}")
     public String showFormForUpdate(@CookieValue(value = "loggedInUserId") String userId,
-                                    @RequestParam String guestEmail,
+                                    @PathVariable String guestEmail,
                                     Model model,
                                     Guest updatedGuest,
                                     RedirectAttributes redirectAttributes) {
         try {
             if (userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            System.out.println(guestEmail);
             Guest newGuest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
             newGuest.setGuestNickName(updatedGuest.getGuestNickName());
             newGuest.setGuestEmail(updatedGuest.getGuestEmail());
@@ -95,7 +96,7 @@ public class GuestController {
     //        redirectAttributes.addFlashAttribute("message", "Guest info has been updated!");
             return "redirect:/profile#guests";
         } catch (Exception e) {
-            return "redirect:entry?status=UPDATING_FAILED&message=" + e.getMessage();
+            return "redirect:/entry?status=UPDATING_FAILED&message=" + e.getMessage();
         }
     }
 
@@ -108,13 +109,25 @@ public class GuestController {
 
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
+            @CookieValue(value = "loggedInGuestEmail", required = false) String guestEmail,
+            @CookieValue(value = "loggedInGuestId", required = false) Long guestId,
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "message", required = false) String message,
             Model model //transfers info to html
     ) {
-        model.addAttribute("status", status);
-        model.addAttribute("message", message);
-        return "invitation";
+        try {
+
+            Guest guest = this.guestServiceImpl.getGuestById(guestId);
+            if (guestEmail == null || guestId == null || guest == null)
+                throw new RuntimeException("There is not found info about You! Please, Login!");
+
+            model.addAttribute("guest", guest);
+            model.addAttribute("status", status);
+            model.addAttribute("message", message);
+            return "invitation";
+        } catch (Exception exception){
+                return "redirect:entry?status=LOGIN_FAILED&message=There is not found info about You! Please, Login!";
+        }
     }
 
     @PostMapping("/WelcomeToSeeInvitation")
@@ -146,7 +159,6 @@ public class GuestController {
                                     @CookieValue(value = "loggedInGuestId") Long guestId, Model model
     ) {
         Guest guest = this.guestServiceImpl.getGuestById(guestId);
-        System.out.println(guest);
         model.addAttribute("guest", guest);
         model.addAttribute("guestId", guestId);
         model.addAttribute("guestEmail", guestEmail);
@@ -170,14 +182,6 @@ public class GuestController {
         redirectAttributes.addFlashAttribute("message", "Your answer has been submitted. Thank you!");
 
         return "redirect:/WelcomeToSeeInvitation";
-    }
-
-    @GetMapping("/entry/")
-    public String displayEntryPage(Model model) {
-        // Add any necessary model attributes
-        model.addAttribute("message", "Your answer has been submitted. Thank you!");
-
-        return "entry";
     }
 
     @GetMapping("/guest/createEmail/{guestEmail}")

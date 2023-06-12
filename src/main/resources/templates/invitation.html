@@ -77,11 +77,14 @@
 </div>
 <!-- RSVP section -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
-  <h1>HOPE YOU CAN COME!</h1>
-  <p class="w3-large">Kindly Respond By 1st of August, 2023</p>
-  <p class="w3-xlarge">
+  <div class="w3-xlarge" th:if="${guest.getGuestInvitationAcceptance() == null}">
+    <h1>HOPE YOU CAN COME!</h1>
+    <div class="w3-large">Kindly Respond By 1st of August, 2023</div>
     <a th:href="@{/guest/confirmation}" type="button" class="btn btn-primary btn-sm mb-3" target="_blank">Confirm invitation</a>
-  </p>
+  </div>
+  <div class="w3-xlarge" th:if="${guest.getGuestInvitationAcceptance() != null}">
+    Your invite is confirmed. Please contact email sender to change your response.
+  </div>
 </div>
 <!-- RSVP modal -->
 <div id="id01" class="w3-modal">
