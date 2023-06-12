@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>This is email for guest</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <meta charset="UTF-8">
+    <title>This is email for guest</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
 <body>
 
 <main class="container">
-  <form method="post" th:action="@{/guest/createEmail}" >
+    <form method="post" th:action="@{/guest/sendEmail/{guestEmail}}">
 
 
-      <div>
-        <label> Email to send invitation:  </label>
-        <input type="text" name="guestEmail" class="form-control" th:placeholder="${guest.getGuestEmail()}" required readonly/>
-      </div>
+        <div>
+            <label> Email to send invitation:  </label>
+            <input type="text" name="guestEmail" class="form-control" th:value="${guest.getGuestEmail()}" required readonly/>
+        </div>
 
-      <div>
-        <label> Subject for invitation email: </label>
-        <input type="text" class="form-control" name="subject" value="Guess WHAT? &#128525;" required/>
-      </div>
-      <div>
-          <label> Body for invitation: </label>
-          <input type="text" class="form-control" name="body" value=" http://localhost:2023/WelcomeToSeeInvitation
-          <br> Your invitation code is `1808` ! You will have to use it to see invitation!" required>
+        <div>
+            <label> Subject for invitation email: </label>
+            <input type="text" class="form-control" name="subject" value="Guess WHAT? &#128525;" required/>
+        </div>
+        <div>
+            <label> Body for invitation: </label>
+            <input type="text" class="form-control" name="body" value=" We are happy to send You a surprise link:)
+          You will have to use invitation code is `1808` and Your password to get in!
+          http://localhost:2023/WelcomeToSeeInvitation
+         " required>
         </div>
 
         <button class="btn btn-primary" type="submit" name="subject">Send </button>
 
-  </form>
+    </form>
 </body>
 </html>

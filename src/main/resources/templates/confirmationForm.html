@@ -20,30 +20,30 @@
   <br>
   <form action="/guest/guestAnswer" method="post" th:object="${guest}">
     <!--<table style="width:80%">-->
-      <div class="w3-container" >
-        <table class="table w3-table-all-small" border="1px solid" style="margin-left:5px;margin-right:40px">
-          <thead class="w3-medium w3-light-grey">
-          <tr class="w3-grey">
-          <tr>
-            <td>Are You coming?</td>
-            <td>How many persons could You be?</td>
-            <td>Please, add here comments or questions, if You have such!</td>
-           <td> </td>
-          </tr>
-         <input type="hidden" th:field="*{guestEmail}" th:value="${guest.guestEmail}" />
-          <tr>
-            <td>
-              <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance} ">
-                <option value="YES" th:selected="${guest.getGuestInvitationAcceptance()}">Yes, of course!</option>
-                <option value="NO" th:selected="${guest.getGuestInvitationAcceptance()}">Can not participate!</option>
-                <option value="MAYBE" th:selected="${guest.getGuestInvitationAcceptance()}">I would like, but I will let You know later!</option>
-             </select></td>
-            <td><input type="text" class="form-control" th:field="${guest.guestCount}" required /></td>
-             <td><input type="text" class="form-control" th:field="${guest.guestComment}" /></td>
-           <td><button class="btn btn-primary" type="submit">Confirm!</button></td>
-          </tr>
-    </table>
-      </div>
+    <div class="w3-container" >
+      <table class="table w3-table-all-small" border="1px solid" style="margin-left:5px;margin-right:40px">
+        <thead class="w3-medium w3-light-grey">
+        <tr class="w3-grey">
+        <tr>
+          <td>Are You coming?</td>
+          <td>How many persons could You be?</td>
+          <td>Please, add here comments or questions, if You have such!</td>
+          <td> </td>
+        </tr>
+        <input type="hidden" th:field="*{guestEmail}" th:value="${guest.guestEmail}" />
+        <tr>
+          <td>
+            <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance} ">
+              <option value="YES" th:selected="${guest.getGuestInvitationAcceptance()}">Yes, of course!</option>
+              <option value="NO" th:selected="${guest.getGuestInvitationAcceptance()}">Can not participate!</option>
+              <option value="MAYBE" th:selected="${guest.getGuestInvitationAcceptance()}">I would like, but I will let You know later!</option>
+            </select></td>
+          <td><input type="text" class="form-control" th:field="${guest.guestCount}" required /></td>
+          <td><input type="text" class="form-control" th:field="${guest.guestComment}" /></td>
+          <td><button class="btn btn-primary" type="submit">Confirm!</button></td>
+        </tr>
+      </table>
+    </div>
   </form>
 </main>
 

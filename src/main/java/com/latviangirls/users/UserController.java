@@ -46,10 +46,10 @@ public class UserController {
     }
 
 
-    @GetMapping("/entry")
+   /* @GetMapping("/entry")
     public String displayMainPageAfterRegister(){
         return "entry";
-    }
+    }*/
 
     @GetMapping("/logout")
 
