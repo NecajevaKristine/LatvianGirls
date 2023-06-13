@@ -98,6 +98,7 @@ body {
      padding-bottom:7px;
      padding-left:5px;
      border-radius: 15px 50px;
+
 }
 
 .input___style{
@@ -105,13 +106,13 @@ body {
     float:right;
     padding:3px;
     border-radius: 10px 10px;
-    width:65.00%;
+    width:65%;
 }
 .input_____style{
     background:whitesmoke;
     float:right;
     padding:20px;
     border-radius: 10px 10px;
-    width:65.00%;
+    width:65%;
 
 }
