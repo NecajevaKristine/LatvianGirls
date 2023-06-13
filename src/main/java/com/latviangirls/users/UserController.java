@@ -23,7 +23,7 @@ public class UserController {
     public String handleUserRegistration (User user){
         try{
             this.userService.createUser(user);
-            return "redirect:entry?status=REGISTER_SUCCESS";
+            return "redirect:entry?status=REGISTER_SUCCESS&message=Registration Successful, please login to continue";
         }catch(Exception exception){
             exception.printStackTrace();
             return "redirect:entry?status=REGISTER_FAILED&message=Registration failed";
@@ -41,13 +41,8 @@ public class UserController {
 
             return "redirect:profile";
         }catch (Exception exception){
-            return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
+            return "redirect:entry?status=LOGIN_FAILED&message=Login failed "+ exception.getMessage();
         }
-    }
-
-    @GetMapping("/entry")
-    public String displayMainPageAfterRegister(){
-        return "entry";
     }
 
     @GetMapping("/logout")
