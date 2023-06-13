@@ -107,7 +107,6 @@ public class GuestController {
         return "redirect:/profile#guests";
     }
 
-
     @GetMapping("/WelcomeToSeeInvitation")
     public String displayInvitationPage(
             @CookieValue(value = "loggedInGuestEmail", required = false) String guestEmail,

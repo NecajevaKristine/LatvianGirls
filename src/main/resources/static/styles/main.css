@@ -75,3 +75,14 @@ body {
         padding: 20px*/
 }
 
+.message {
+    background: whitesmoke;
+    padding: 7px;
+    margin: 10px;
+    max-width: 600px;
+}
+
+.section {
+/*    background: whitesmoke;
+    padding: 20px*/
+}

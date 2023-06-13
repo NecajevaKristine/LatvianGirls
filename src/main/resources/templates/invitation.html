@@ -81,6 +81,9 @@
     <h1>HOPE YOU CAN COME!</h1>
     <div class="w3-large">Kindly Respond By 1st of August, 2023</div>
     <a th:href="@{/guest/confirmation}" type="button" class="btn btn-primary btn-sm mb-3" target="_blank">Confirm invitation</a>
+    </div>
+  <div class="w3-xlarge" th:if="${guest.getGuestInvitationAcceptance() != null}">
+    Your invite is confirmed. Please contact email sender to change your response.
   </div>
 </div>
 <!-- RSVP modal -->
