@@ -1,6 +1,7 @@
 * {margin:0;padding:0;}
 body{
-    background-image: url('/images/freesia.jpg');
+
+    background-color: Thistle;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -76,13 +77,48 @@ body {
 }
 
 .message {
-    background: whitesmoke;
+    background: lightyellow;
     padding: 7px;
     margin: 10px;
-    max-width: 600px;
+    max-width: 400px;
+    font-family: Garamond;
+    font-size: 18px;
+    color: darkblue;
 }
 
 .section {
 /*    background: whitesmoke;
     padding: 20px*/
+}
+
+.text_input {
+    font-size: 20px;
+    font-family: Garamond;
+    color: purple;
+    font-weight: bold;
+}
+
+.btn_submit{
+    background-color: #9415ed;
+    border: none;
+    color: #301934;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.btn_clear{
+    background-color: #c681f7;
+    border: none;
+    color: #301934;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }

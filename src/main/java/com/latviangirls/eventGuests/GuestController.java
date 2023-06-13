@@ -215,4 +215,9 @@ public class GuestController {
         mailSender.send(message);
         return "redirect:/profile#guests";
     }
+
+    @GetMapping("/profile/invToSee")
+    public String displayInvitationExample(){
+           return "inv_toSee";
+    }
 }

@@ -20,6 +20,4 @@ public class User {
     private String password;
     private String nickName;
     private String fullName;
-    private String createdAt;
-    private String updatedAt;
 }
