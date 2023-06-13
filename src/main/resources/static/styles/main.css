@@ -1,46 +1,53 @@
 * {margin:0;padding:0;}
 body{
-    background-image: url('/images/freesia.jpg');
+    //background-image: url('/images/freesia.jpg');
+     background-color: Thistle;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     width:100vh;
     height:100vh;
 }
+
 h2{text-align:center;
 }
+
 body {
     margin-top: 150px;
     margin-block-start: auto;
     padding: 150px;
 }
+
 .tabs {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
     font-family: Garamond;
     font-size: 23px;
-    border-bottom: 2px solid #9415ED;
+    border-bottom: 2px solid #9415ed;
     max-width:500vh;
     height:20vh;
     padding: 0px 0px;
 }
+
 .tabs__label {
     padding: 15px 25px;
     cursor: pointer;
     color: #301934;
     font-weight: bold;
-    border-bottom: 1px solid #EBD7FA;
-    background-color: #C681F7;
+    border-bottom: 1px solid #ebd7fa;
+    background-color: #c681f7;
     border-radius: 15px 50px;
 }
+
 .tabs__first:checked+.tabs__label {
     font-weight: bold;
     color: #301934;
-    background-color: #9415ED;
-    border-bottom: 1px solid #9415ED;
+    background-color: #9415ed;
+    border-bottom: 1px solid #9415ed;
     border-radius: 15px 50px;
 }
+
 .tabs__content{
     order: 1;
     width: 100%;
@@ -48,10 +55,63 @@ body {
     font-size: 0.9em;
     display: none;
 }
+
 .tabs__first:checked+.tabs__label+.tabs__content {
     display: initial;
     width: 100%;
 }
+
 .tabs__first{
     display: none;
+}
+
+.message {
+    background: whitesmoke;
+    padding: 7px;
+    margin: 10px;
+    max-width: 600px;
+}
+
+.section {
+/*    background: whitesmoke;
+    padding: 20px*/
+  }
+.text_input{
+    fonts-size:20px;
+    font-family: Garamond;
+    color: purple;
+}
+.text__input{
+    fonts-size:1.8em;
+    font-family: Garamond;
+    color: white;
+     max-width:100vh;
+     height:6vh;
+     font-weight: bold;
+     }
+
+.label_style{
+
+     background:purple;
+     padding-top:7px;
+     padding-right:10px;
+     padding-bottom:7px;
+     padding-left:5px;
+     border-radius: 15px 50px;
+}
+
+.input___style{
+    background:whitesmoke;
+    float:right;
+    padding:3px;
+    border-radius: 10px 10px;
+    width:65.00%;
+}
+.input_____style{
+    background:whitesmoke;
+    float:right;
+    padding:20px;
+    border-radius: 10px 10px;
+    width:65.00%;
+
 }

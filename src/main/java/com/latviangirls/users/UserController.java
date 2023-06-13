@@ -4,11 +4,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -23,7 +21,7 @@ public class UserController {
     public String handleUserRegistration (User user){
         try{
             this.userService.createUser(user);
-            return "redirect:entry?status=REGISTER_SUCCESS";
+            return "redirect:entry?status=REGISTER_SUCCESS&message=Registration Successful, please login to continue";
         }catch(Exception exception){
             exception.printStackTrace();
             return "redirect:entry?status=REGISTER_FAILED&message=Registration failed";
@@ -41,18 +39,11 @@ public class UserController {
 
             return "redirect:profile";
         }catch (Exception exception){
-            return "redirect:entry?status=LOGIN_FAILED&message=Login failed"+ exception.getMessage();
+            return "redirect:entry?status=LOGIN_FAILED&message=Login failed" + exception.getMessage();
         }
     }
 
-
-   /* @GetMapping("/entry")
-    public String displayMainPageAfterRegister(){
-        return "entry";
-    }*/
-
     @GetMapping("/logout")
-
     public String logout(
             @CookieValue(value = "loggedInUserId", defaultValue = "") String userId,
             HttpServletResponse response
@@ -69,4 +60,3 @@ public class UserController {
     }
 
 }
-
