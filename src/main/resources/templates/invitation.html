@@ -10,17 +10,6 @@
     body,h1,h2{font-family: "Raleway", sans-serif}
     body, html {height: 100%}
     p {line-height: 2}
-    .bgimg, .bgimg2 {
-      min-height: 800%;
-      background-position: center;
-      background-size: cover;
-    }
-    .column {
-      float: left;
-      width: 50.00%;
-      padding: 50px;
-      font-style: oblique;
-    }
     * {
       box-sizing: border-box;
     }
@@ -35,9 +24,9 @@
     <a href="#rsvp" style="width:33.33%" class="w3-bar-item w3-button">Invitation response</a>
   </div>
 </div>
-<!-- About / Rita & Matīss -->
 <div id="us">
   <h1 class="w3-row w3-text-grey w3-center"><b>Rita & Matīss</b></h1>
+  <div style="background-color: lightcyan">
   <div class="w3-half" style="background-color: lightcyan">
     <img src="/images/vakars.jpg" style="width:73%;margin:32px 32px; border-radius: 8px;" >
   </div>
@@ -58,8 +47,8 @@
     <p style="color:blue"> <strong>We too :)</strong></p>
     <p style="color:blue"> <strong>We would like You to invite to our wedding ceremony! </strong></p>
     <p style="color:blue"> <strong>And hope You are coming! :) </strong></p>
-    <p style="color:blue"> <strong>Go to another section to see more details about wedding! </strong></p>
   </div>
+</div>
 </div>
 </div>
 
@@ -88,6 +77,7 @@
 </div>
 <div class="w3-center" id="rsvp">
   <h1 class="w3-row w3-text-grey w3-center"><b>Invitation response</b></h1>
+  <div style="background-color: lightcyan">
   <div class="w3-xlarge" style="background-color: lightcyan" th:if="${guest.getGuestInvitationAcceptance() == null}">
     <h1>HOPE YOU CAN COME!</h1>
     <div class="w3-large">Kindly Respond By 1st of August, 2023</div>
@@ -97,6 +87,7 @@
     Your invite is confirmed. Please, contact email sender other way to change your response!
   </div>
   <img src="https://opensource.com/sites/default/files/lead-images/newsletter_email_mail_web_browser.jpg" style="width:350px; height:200px" alt="Response">
+</div>
 </div>
 </body>
 </html>
