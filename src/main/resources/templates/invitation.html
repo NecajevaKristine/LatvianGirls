@@ -7,23 +7,23 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <style>
-       body,h1,h2{font-family: "Raleway", sans-serif}
+    body,h1,h2{font-family: "Raleway", sans-serif}
     body, html {height: 100%}
     p {line-height: 2}
     .bgimg, .bgimg2 {
       min-height: 800%;
       background-position: center;
       background-size: cover;
-      }
-       .column {
-         float: left;
-         width: 50.00%;
-         padding: 50px;
-         font-style: oblique;
-      }
-       * {
-         box-sizing: border-box;
-       }
+    }
+    .column {
+      float: left;
+      width: 50.00%;
+      padding: 50px;
+      font-style: oblique;
+    }
+    * {
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
@@ -39,7 +39,7 @@
 <div id="us">
   <h1 class="w3-row w3-text-grey w3-center"><b>Rita & Matīss</b></h1>
   <div class="w3-half" style="background-color: lightcyan">
-   <img src="/images/vakars.jpg" style="width:73%;margin:32px 32px; border-radius: 8px;" >
+    <img src="/images/vakars.jpg" style="width:73%;margin:32px 32px; border-radius: 8px;" >
   </div>
   <div class="w3-half" style="background-color: lightcyan">
     <p style="color:blue"><strong>A few lines from our beloved song :)</strong></p>
@@ -60,29 +60,29 @@
     <p style="color:blue"> <strong>And hope You are coming! :) </strong></p>
     <p style="color:blue"> <strong>Go to another section to see more details about wedding! </strong></p>
   </div>
-  </div>
+</div>
 </div>
 
 <div class="w3-center" id="wedding">
   <div class="w3-container w3-padding-64">
     <h1 class="w3-center w3-text-grey"><b>The Wedding</b></h1>
     <div style="background-color: lightcyan; width:100%">
-    <img class="w3-round-large w3-grayscale-min" src="/images/kolonnas.jpg" style="width:20%;margin:0px 0px">
+      <img class="w3-round-large w3-grayscale-min" src="/images/kolonnas.jpg" style="width:20%;margin:0px 0px">
 
-    <div class="w3-row">
-      <div class="w3-half">
-        <h2><strong><u>When</u></strong></h2>
-        <h4>Wedding Ceremony Date- 18/08/2023</h4>
-        <h4>Time - 2:00pm</h4>
-        <h5>Approximate duration of the event - 4h</h5>
+      <div class="w3-row">
+        <div class="w3-half">
+          <h2><strong><u>When</u></strong></h2>
+          <h4>Wedding Ceremony Date- 18/08/2023</h4>
+          <h4>Time - 2:00pm</h4>
+          <h5>Approximate duration of the event - 4h</h5>
+        </div>
+        <div class="w3-half">
+          <h2><strong><u>Where</u></strong></h2>
+          <h3>"Augustes iedvesmas dārzs"</h3>
+          <p>Saulkrastu novads, Sējas pagasts, Pabaži, Latvija</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8631.566770912876!2d24.6320397!3d57.2585056!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eead8ccf8ac483%3A0xd9a49cc63576cc0c!2sAugustes%20iedvesmas%20d%C4%81rzs!5e0!3m2!1slv!2slv!4v1686693517470!5m2!1slv!2slv" width="380" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
-      <div class="w3-half">
-        <h2><strong><u>Where</u></strong></h2>
-        <h3>"Augustes iedvesmas dārzs"</h3>
-        <p>Saulkrastu novads, Sējas pagasts, Pabaži, Latvija</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8631.566770912876!2d24.6320397!3d57.2585056!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eead8ccf8ac483%3A0xd9a49cc63576cc0c!2sAugustes%20iedvesmas%20d%C4%81rzs!5e0!3m2!1slv!2slv!4v1686693517470!5m2!1slv!2slv" width="380" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
     </div>
   </div>
 </div>
@@ -92,11 +92,11 @@
     <h1>HOPE YOU CAN COME!</h1>
     <div class="w3-large">Kindly Respond By 1st of August, 2023</div>
     <a th:href="@{/guest/confirmation}" type="button" class="btn btn-primary btn-sm mb-3" target="_blank">Confirm invitation</a>
-    </div>
+  </div>
   <div class="w3-xlarge" th:if="${guest.getGuestInvitationAcceptance() != null}">
     Your invite is confirmed. Please, contact email sender other way to change your response!
   </div>
-    <img src="https://opensource.com/sites/default/files/lead-images/newsletter_email_mail_web_browser.jpg" style="width:350px; height:200px" alt="Response">
+  <img src="https://opensource.com/sites/default/files/lead-images/newsletter_email_mail_web_browser.jpg" style="width:350px; height:200px" alt="Response">
 </div>
 </body>
 </html>

@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>This is email for guest</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <meta charset="UTF-8">
+    <title>This is email for guest</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-
+<h1 class="Ģaramond:30px; padding:20px">We are happy to send you invitation</h1>
+<br>
 <main class="container">
-  <form method="post" th:action="@{/guest/sendEmail/{guestEmail}}">
-
-
-      <div>
-        <label> Email to send invitation:  </label>
-        <input type="text" name="guestEmail" class="form-control" th:value="${guest.getGuestEmail()}" required readonly/>
-      </div>
-
-      <div>
-        <label> Subject for invitation email: </label>
-        <input type="text" class="form-control" name="subject" value="Guess WHAT? &#128525;" required/>
-      </div>
-      <div>
-          <label> Body for invitation: </label>
-          <input type="text" class="form-control" name="body" value=" We are happy to send You a surprise link:)
-          You will have to use invitation code is `1808` and Your Email (where You receive the link) to get in!
-          http://localhost:2023/WelcomeToSeeInvitation
-         " required>
+    <form method="post" th:action="@{/guest/sendEmail/{guestEmail}}">
+        <div class="text__input">
+            <label class="label_style">Email to send invitation: </label>
+            <input type="text" name="guestEmail" class="form-control input___style" th:value="${guest.getGuestEmail()}" required readonly/>
         </div>
-
-        <button class="btn btn-primary" type="submit" name="subject">Send </button>
-
-  </form>
+        <div class="text__input">
+            <label class="label_style"> Subject for invitation email: </label>
+            <input type="text" class="form-control input___style" name="subject" value="Guess WHAT? &#128525;" required/>
+        </div>
+        <div class="text__input">
+            <label class="label_style "> Body for invitation:</label>
+            <input type="text" class="form-control input___style" name="body" value="We are happy to send You a surprise link:)
+            You will have to use invitation code '1808'
+            Your Email (where You receive the link) to get in!
+            http://localhost:2023/WelcomeToSeeInvitation" required>
+        </div> <br> <br>
+        <button class="btn btn-primary" style="border-radius: 10px 40px; padding:7px; width:20%" type="submit" name="subject">Send </button>
+    </form>
+</main>
 </body>
 </html>

@@ -33,12 +33,12 @@
         <input type="hidden" th:field="*{guestEmail}" th:value="${guest.guestEmail}" />
         <tr>
           <td>
-            <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance} ">
+            <select name="ConfirmParticipation" th:field="*{guestInvitationAcceptance}" >
               <option value="YES" th:selected="${guest.getGuestInvitationAcceptance()}">Yes, of course!</option>
               <option value="NO" th:selected="${guest.getGuestInvitationAcceptance()}">Can not participate!</option>
               <option value="MAYBE" th:selected="${guest.getGuestInvitationAcceptance()}">I would like, but I will let You know later!</option>
             </select></td>
-          <td><input type="text" class="form-control" th:field="${guest.guestCount}" required /></td>
+          <td><input type="text" class="form-control" th:field="${guest.guestCount}" /></td>
           <td><input type="text" class="form-control" th:field="${guest.guestComment}" /></td>
           <td><button class="btn btn-primary" type="submit">Confirm!</button></td>
         </tr>

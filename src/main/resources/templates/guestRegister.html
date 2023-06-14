@@ -24,7 +24,7 @@
                 <tr>
                     <td>    <input type="text" th:field="*{guestNickName}" class="form-control" placeholder="Friend`s nickname" required> </td>
                     <td>    <input th:field="*{guestEmail}" type="email" class="form-control" placeholder="friend@gmail.com" required></td>
-                    <td>    <input th:field="*{guestPhoneNumber}" type="tel" class="form-control" placeholder="12345678" required></td>
+                    <td>    <input th:field="*{guestPhoneNumber}" type="tel" pattern="[0-9]{8}" class="form-control" placeholder="12345678" required></td>
                     <td>    <button class="btn btn-primary" type="submit">Create guest</button></td>
                 </tr>
             </table>
@@ -34,3 +34,9 @@
 </main>
 </body>
 </html>
+
+
+
+
+
+

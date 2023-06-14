@@ -67,7 +67,8 @@ public class GuestController {
                                     @PathVariable String guestEmail,
                                     Model model) {
         try {
-            if (userId == null || userId.isEmpty()) throw new RuntimeException("User session expired, please login to try again");
+            if (userId == null || userId.isEmpty())
+                throw new RuntimeException("User session expired, please login to try again");
 
             Guest guest = guestServiceImpl.getGuestByGuestEmail(guestEmail);
             model.addAttribute("guest", guest);
@@ -125,7 +126,7 @@ public class GuestController {
             model.addAttribute("status", status);
             model.addAttribute("message", message);
             return "invitation";
-        } catch (Exception exception){
+        } catch (Exception exception) {
             return "redirect:entry?status=LOGIN_FAILED&message=There is not found info about You! Please, Login!";
         }
     }
@@ -197,7 +198,7 @@ public class GuestController {
     }
 
     @PostMapping("/guest/sendEmail/{guestEmail}")
-    public String sendInvitationByLink (HttpServletRequest request) {
+    public String sendInvitationByLink(HttpServletRequest request) {
         String guestEmail = request.getParameter("guestEmail");
         String subject = request.getParameter("subject");
         String body = request.getParameter("body");
@@ -217,7 +218,7 @@ public class GuestController {
     }
 
     @GetMapping("/profile/invToSee")
-    public String displayInvitationExample(){
-           return "inv_toSee";
+    public String displayInvitationExample() {
+        return "inv_toSee";
     }
 }

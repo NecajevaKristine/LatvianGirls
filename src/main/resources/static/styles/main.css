@@ -1,6 +1,5 @@
 * {margin:0;padding:0;}
 body{
-
     background-color: Thistle;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -71,11 +70,6 @@ body {
     max-width: 600px;
 }
 
-.section {
-    /*    background: whitesmoke;
-        padding: 20px*/
-}
-
 .message {
     background: lightyellow;
     padding: 7px;
@@ -84,11 +78,6 @@ body {
     font-family: Garamond;
     font-size: 18px;
     color: darkblue;
-}
-
-.section {
-/*    background: whitesmoke;
-    padding: 20px*/
 }
 
 .text_input {
@@ -121,4 +110,46 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+  }
+
+.text_input{
+    fonts-size:20px;
+    font-family: Garamond;
+    color: purple;
+}
+
+.text__input{
+    fonts-size:1.8em;
+    font-family: Garamond;
+    color: white;
+     max-width:100vh;
+     height:6vh;
+     font-weight: bold;
+     }
+
+.label_style{
+
+     background:purple;
+     padding-top:7px;
+     padding-right:10px;
+     padding-bottom:7px;
+     padding-left:5px;
+     border-radius: 15px 50px;
+
+}
+
+.input___style{
+    background:whitesmoke;
+    float:right;
+    padding:3px;
+    border-radius: 10px 10px;
+    width:65%;
+}
+.input_____style{
+    background:whitesmoke;
+    float:right;
+    padding:20px;
+    border-radius: 10px 10px;
+    width:65%;
+
 }

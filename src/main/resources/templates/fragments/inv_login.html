@@ -1,20 +1,20 @@
 <main class="margin-top" th:fragment="invitationLogin">
-  <h3 class="margin-top">Seems there will be a party?<br>
-    Let`s check Your invitation!
-  </h3>
+    <h3 class="margin-top">Seems there will be a party?<br>
+        Let`s check Your invitation!
+    </h3>
 
-  <form method="post" action="/WelcomeToSeeInvitation" >
-    <div class="text_input">
-      <label><u>Enter your e-mail address</u></label>
-      <input name="guestEmail" minlength="4" type="text" required>
-    </div>
-    <div class="text_input">
-      <label><u>Enter your invitation code</u></label>
-      <input name="guestProjectCode" minlength="4" type="ProjectCode" required>
-    </div>
-    <div>
-      <button class="btn_submit" type="submit" ><u>Get in!</u></button>
-      <button class="btn_clear" type="reset"><u>Clear form</u></button>
-    </div>
-  </form>
+    <form method="post" action="/WelcomeToSeeInvitation" >
+        <div class="text_input">
+            <label><u>Enter your e-mail address</u></label>
+            <input name="guestEmail" minlength="4" type="text" required>
+        </div>
+        <div class="text_input">
+            <label><u>Enter your invitation code</u></label>
+            <input name="guestProjectCode" minlength="4" type="ProjectCode" required>
+        </div>
+        <div>
+            <button class="btn_submit" type="submit" ><u>Get in!</u></button>
+            <button class="btn_clear" type="reset"><u>Clear form</u></button>
+        </div>
+    </form>
 </main>

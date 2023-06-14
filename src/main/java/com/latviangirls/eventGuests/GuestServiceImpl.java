@@ -50,4 +50,4 @@ public class GuestServiceImpl {
     public Guest getGuestById(Long guestId) {
         return this.guestRepository.findGuestByGuestId(guestId);
     }
-  }
+}
